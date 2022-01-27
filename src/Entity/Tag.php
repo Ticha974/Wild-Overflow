@@ -18,18 +18,18 @@ class Tag
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=Question::class, inversedBy="tags")
      */
-    private $questions;
+    private Collection $questions;
 
     public function __construct()
     {
