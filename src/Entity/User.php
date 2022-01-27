@@ -17,32 +17,32 @@ class User
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $username;
+    private string $username;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private string $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
+    private string $password;
 
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="user")
      */
-    private $questions;
+    private Collection $questions;
 
     /**
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="user")
      */
-    private $answers;
+    private Collection $answers;
 
     public function __construct()
     {

@@ -38,7 +38,7 @@ class Question
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private User $user;
+    private ?User $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question")

@@ -17,7 +17,7 @@
         <div class="row justify-content-center">
                 <div class="col-8">
                     <h3 class="text-primary">{{ question.title }}</h3>
-                    <p>{{ question.content|raw}}</p>
+                    <p>{{ question.content|raw }}</p>
                 </div>
         </div>
         <div class="row justify-content-center">
@@ -30,7 +30,7 @@
 
                 <div class="col-8">
                     <p class="text-info"><u>{{ answer.user.username }}</u></p>
-                    <p>{{ answer.content|raw}}</p>
+                    <p>{{ answer.content|raw }}</p>
                 </div>
             {% else %}
             <p>No Answer</p>

@@ -42,5 +42,4 @@ class QuestionController extends AbstractController
             ['question' => $question]
         );
     }
-
 }
