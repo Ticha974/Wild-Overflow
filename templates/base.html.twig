@@ -4,15 +4,20 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>
 			{% block title %}Projet 3 Name{% endblock %}
 		</title>
 		{% block stylesheets %}
 		{% endblock %}
+
 		{% block javascripts %}
 		{% endblock %}
 	</head>
 	<body>
+	{% include 'navbar.html.twig' %}
 		{% block body %}{% endblock %}
+	{% include 'footer.html.twig' %}
 	</body>
+
 </html>
