@@ -26,14 +26,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $username;
+    private string $username;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private string $email;
-
-
 
     /**
      * @var string The hashed password
@@ -44,12 +42,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="user")
      */
-    private $questions;
+    private Collection $questions;
 
     /**
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="user")
      */
-    private $answers;
+    private Collection $answers;
 
     public function __construct()
     {

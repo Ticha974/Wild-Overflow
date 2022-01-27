@@ -40,6 +40,7 @@ class Question
     /**
      * @ORM\Column(type="datetime_immutable")
      */
+
     private \DateTimeImmutable $createdAt;
 
     /**

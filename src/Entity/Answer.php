@@ -15,34 +15,34 @@ class Answer
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $content;
+    private string $content;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $question;
+    private ?Question $question;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private ?User $user;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isValid;
+    private bool $isValid;
 
     public function getId(): ?int
     {
