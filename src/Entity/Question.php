@@ -6,6 +6,7 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
@@ -17,38 +18,46 @@ class Question
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 255,
+     *      minMessage = "Your title must be at least {{ limit }} characters long",
+     *      maxMessage = "Your title name cannot be longer than {{ limit }} characters")
      */
-    private $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
-    private $content;
+    private string $content;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private ?User $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question")
      */
-    private $answers;
+    private Collection $answers;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="questions")
+     * @ORM\JoinTable(name="tag_question")
      */
-    private $tags;
+    private Collection $tags;
 
     public function __construct()
     {
@@ -56,7 +65,7 @@ class Question
         $this->tags = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }

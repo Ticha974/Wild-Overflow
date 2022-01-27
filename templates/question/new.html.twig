@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/assets/styles/form.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <h1>Ask your question</h1>
+    <br>
+    {{ form_start(form) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+    <div class="row">
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.title) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.content) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.tags) }}
+        </div>
+    </div>
+    <button  type="submit" class="btn">Send question</button>
+    {{ form_end(form) }}
+{% endblock %}
