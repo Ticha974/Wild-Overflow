@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/assets/styles/form.css" rel="stylesheet">
+{% endblock %}
 
 {% block body %}
     {% for flashError in app.flashes('verify_email_error') %}
@@ -10,13 +16,22 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
+<div class="row">
+    <div class="col" id="some-custom-id">
     {{ form_row(registrationForm.username) }}
+    </div>
+    <div class="col" id="some-custom-id">
         {{ form_row(registrationForm.email) }}
+    </div>
+    <div class="col" id="some-custom-id">
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+    </div>
+    <div class="col" id="some-custom-id">
         {{ form_row(registrationForm.agreeTerms) }}
-
+    </div>
         <button type="submit" class="btn" style="background-color: #999999">Register</button>
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}
