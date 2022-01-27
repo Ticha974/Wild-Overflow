@@ -17,38 +17,38 @@ class Question
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $content;
+    private string $content;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private User $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question")
      */
-    private $answers;
+    private Collection $answers;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="questions")
      */
-    private $tags;
+    private Collection $tags;
 
     public function __construct()
     {

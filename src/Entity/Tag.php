@@ -27,7 +27,7 @@ class Tag
     /**
      * @ORM\ManyToMany(targetEntity=Question::class, inversedBy="tags")
      */
-    private $questions;
+    private Collection $questions;
 
     public function __construct()
     {
