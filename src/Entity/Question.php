@@ -63,6 +63,7 @@ class Question
     {
         $this->answers = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): int
