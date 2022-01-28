@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Question;
 
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Form\QuestionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,6 +34,24 @@ class QuestionController extends AbstractController
             ['questions' => $questions]
         );
     }
+    /**
+     * @Route("/new", name="new")
+     */
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $question = new Question();
+
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($question);
+            $entityManager->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('question/new.html.twig', ["form" => $form->createView()]);
+
+    }
 
     /**
      * @Route("/{id}", name="show")
@@ -43,25 +62,6 @@ class QuestionController extends AbstractController
             'question/show.html.twig',
             ['question' => $question]
         );
-
-    /**
-     * @Route("/new", name="new")
-     */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $question = new Question();
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 3]);
-
-        $form = $this->createForm(QuestionType::class, $question);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $question->setUser($user);
-            $entityManager->persist($question);
-            $entityManager->flush();
-            return $this->redirectToRoute('home');
-        }
-        return $this->render('question/new.html.twig', ["form" => $form->createView()]);
-
     }
+
 }
