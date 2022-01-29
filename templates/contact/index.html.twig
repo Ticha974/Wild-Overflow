@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/assets/styles/form.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <h1>Contact us</h1>
+    <br>
+    <div class="row" style="background-color: #313131">
+        {% for message in app.flashes('success') %}
+            <div class="flash-info">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {{ form_start(form) }}
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.fullName, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.subject, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.message, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <button type="submit" value="Send" class="btn"
+                style="margin-top: 15px; background-color: #ff6c71; color: #dfdfdf; border-bottom-color: #9d4447; border-left-color: #9d4447; border-right-color: #9d4447; border-top-color: #9d4447;">
+        Send</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -3,15 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Question;
-
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Form\QuestionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-
 
 /**
  * @Route("/question", name="question_")
@@ -33,24 +32,13 @@ class QuestionController extends AbstractController
             ['questions' => $questions]
         );
     }
-
-    /**
-     * @Route("/{id}", name="show")
-     */
-    public function show(Question $question): Response
-    {
-        return $this->render(
-            'question/show.html.twig',
-            ['question' => $question]
-        );
-
     /**
      * @Route("/new", name="new")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $question = new Question();
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 3]);
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 4]);
 
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
@@ -62,6 +50,16 @@ class QuestionController extends AbstractController
             return $this->redirectToRoute('home');
         }
         return $this->render('question/new.html.twig', ["form" => $form->createView()]);
+    }
 
+    /**
+     * @Route("/{id}", name="show")
+     */
+    public function show(Question $question): Response
+    {
+        return $this->render(
+            'question/show.html.twig',
+            ['question' => $question]
+        );
     }
 }

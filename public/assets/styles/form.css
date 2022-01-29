@@ -47,4 +47,17 @@ button.btn {
 .invalid-feedback {
     color: red;
     font-weight: bold;
+    text-shadow: 2px 2px 2px black;
+}
+
+.flash-info {
+    background-color: greenyellow;
+    width: 350px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 5px;
+    margin: auto;
+    box-shadow: 5px 5px 5px black;
+    color: #6e6e6e;
+    font-weight: bold;
 }
