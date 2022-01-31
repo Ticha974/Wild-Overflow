@@ -25,7 +25,7 @@
     flex-direction: column;
 }
 
-#question_title {
+#question_title, #inputEmail, #inputPassword {
     height: 30px;
 }
 
@@ -61,3 +61,4 @@ button.btn {
     color: #6e6e6e;
     font-weight: bold;
 }
+
