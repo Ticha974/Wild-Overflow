@@ -19,15 +19,17 @@ class ContactController extends AbstractController
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
             $message = (new Email())
                 ->from($contactFormData['email'])
                 ->to($this->getParameter('mailer_to'))
                 ->subject($contactFormData['subject'])
-                ->html('Sender : '.$contactFormData['fullName'].\PHP_EOL.
+                ->html(
+                    'Sender : ' . $contactFormData['fullName'] . \PHP_EOL .
                     $contactFormData['message'],
-                    'utf-8');
+                    'utf-8'
+                );
             $mailer->send($message);
 
             $this->addFlash('success', 'Your message has been sent');
