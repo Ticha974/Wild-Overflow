@@ -34,7 +34,6 @@ class QuestionController extends AbstractController
             ['questions' => $questions]
         );
     }
-
     /**
      * @Route("/latest", name="latest")
      */
@@ -42,20 +41,19 @@ class QuestionController extends AbstractController
     {
         $questions = $this->getDoctrine()
             ->getRepository(Question::class)
-            ->findBy([], ['createdAt' => 'ASC']);
+            ->findBy([], ['createdAt' => 'DESC']);
         return $this->render(
             'question/index.html.twig',
             ['questions' => $questions]
         );
     }
-
     /**
      * @Route("/new", name="new")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $question = new Question();
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 3]);
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 4]);
 
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
