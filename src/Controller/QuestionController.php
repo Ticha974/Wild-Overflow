@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Question;
-
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Form\QuestionType;
@@ -12,7 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-
 
 /**
  * @Route("/question", name="question_")
@@ -52,7 +50,6 @@ class QuestionController extends AbstractController
             return $this->redirectToRoute('home');
         }
         return $this->render('question/new.html.twig', ["form" => $form->createView()]);
-
     }
 
     /**
@@ -65,5 +62,4 @@ class QuestionController extends AbstractController
             ['question' => $question]
         );
     }
-
 }
