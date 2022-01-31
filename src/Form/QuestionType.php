@@ -26,9 +26,7 @@ class QuestionType extends AbstractType
                 'expanded' => true,
                 'by_reference' => false,
 
-            ])
-            ->add('created_at',)
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

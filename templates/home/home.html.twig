@@ -4,30 +4,161 @@
 
 {% block stylesheets %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 {% endblock %}
 
 {% block javascripts %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 {% endblock %}
 {% block body %}
-    <div class="container-fluid p-5  text-black text-center">
-        <h1> Find the best answer to your technical question, help others answer theirs</h1>
-    </div>
-    <div class=" text-left"><h2>PHP</h2></div>
-    <div class="container">
-        <div class="row">
-            {% for question in questions %}
-                <div class="col-4" style="border: 1px solid black; ">
-                    <a href=" {{question.title }}"></a>
 
-                    <p>{{ question.content|raw|striptags[:300] ~ '...' }}</p>
+                    <div class="container-fluid p-5  text-black text-center">
+                        <h1> Find the best answer to your technical question, help others answer theirs</h1>
+                    </div>
+                    {% for tags in tag %}
+                         <div class="container" >
+                             <div class="row" style="height: 50px">
+                                <div class="col">
+                                    <img src="{{ tags.symbolUrl }}" alt="img" height="40px">
+                                </div>
+                                <div class="col-6 align-text-left">
+                                    <div class=" text-left"><h2>{{ tags.name }}</h2></div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="col-sm text-right" >
+                                        <a href="{{ path('tag_question',{id: tags.id} )}}"> See more Questions</a>
+                                    </div>
+                                </div>
+                             </div>
+                             <div class="row">
+                                 <div style="background-color: {{ tags.colorCode }};width:10px;"></div>
+                                    {% for question in tags.questions|slice(1,3) %}
+                                        <div class="col-sm" style="background-color: #E5E4E2 ">
+                                            <img src="{{ tags.symbolUrl }}" alt="img" height="20px">
+                                            <a href="{{ path('question_show', {id: question.id}) }}" class="text-primary" style="text-decoration: none">
+                                                {{ question.title }}</a>
+                                            <div style="height: 10px"></div>
+                                            <p>{{ question.content|striptags[:200] ~ '...' }}</p>
+                                        </div>
+                                        <div style="width: 10px"></div>
+                                    {% endfor %}
+                                    <div style="height: 20px"></div>
+                                 </div>
+                             </div>
+                         </div>
+                    {% endfor %}
+                    <div style="height: 20px;"></div>
+                    <div class="container">
+                        <div class="row">
+                                <div class="col-sm" style=" ">
+                                    <a href="https://www.php.net/" title="PHP">
+                                        <div class="w3-card-2 w3-round ws-pink align-text-center" style="padding:65px;background-color: rgb(116, 80, 137);">
+                                            <h2 style="font-size:30px;font-weight:500">PHP</h2>
+                                        </div>
+                                    </a>
+                                </div>
 
-                </div>
-            {% endfor %}
-            <div class="col-sm" >
-                <button>see more</button>
-            </div>
-        </div>
-    </div>
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://symfony.com/doc/current/index.html" title="PHP">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: #8A9A5B;">
+                                        <h2 style="font-size:30px;font-weight:500">Symfony</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://dev.java/learn/" title="java">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: #7393B3">
+                                        <h2 style="font-size:30px;font-weight:500">Java</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://www.w3schools.com/js/default.asp" title="javascript">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: rgb(133, 100, 0)">
+                                        <h2 style="font-size:30px;font-weight:500">JavaScript</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 20px;"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm" style=" ">
+                                <a href="https://getbootstrap.com/" title="bootstrap">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: pink">
+                                        <h2 style="font-size:30px;font-weight:500">Bootstrap</h2>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://www.python.org/" title="Python">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: pink">
+                                        <h2 style="font-size:30px;font-weight:500">Python</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://fr.reactjs.org/tutorial/tutorial.html" title="React">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: pink">
+                                        <h2 style="font-size:30px;font-weight:500">React</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://www.w3schools.com/cpp/default.asp" title="C++">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: pink;padding-left: 120px">
+                                        <h2 style="font-size:30px;font-weight:500">C++</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 20px;"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm" style=" ">
+                                <a href="https://angular.io/docs" title="Angular">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: pink;padding-left: 120px">
+                                        <h2 style="font-size:30px;font-weight:500">Angular</h2>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://www.w3schools.com/sql/default.asp" title="SQL">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: pink;padding-left: 120px">
+                                        <h2 style="font-size:30px;font-weight:500">SQL</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://www.tutorialsteacher.com/core" title=".NET">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: pink;padding-left: 120px">
+                                        <h2 style="font-size:30px;font-weight:500">.NET</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="width: 10px"></div>
+                            <div class="col-sm" >
+                                <a href="https://www.w3schools.com/cs/index.php" title="C#">
+                                    <div class="w3-card-2 w3-round ws-pink" style="padding:65px;background-color: pink;padding-left: 120px">
+                                        <h2 style="font-size:30px;font-weight:500">C#</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
 {% endblock %}

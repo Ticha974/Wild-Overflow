@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Question[]    findAll()
  * @method Question[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class QuestionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -23,7 +24,7 @@ class QuestionRepository extends ServiceEntityRepository
     //  * @return Question[] Returns an array of Question objects
     //  */
     /*
-    public function findByExampleField($value)
+    public function findBy($createdAt)
     {
         return $this->createQueryBuilder('q')
             ->andWhere('q.exampleField = :val')
@@ -35,6 +36,7 @@ class QuestionRepository extends ServiceEntityRepository
         ;
     }
     */
+
 
     /*
     public function findOneBySomeField($value): ?Question

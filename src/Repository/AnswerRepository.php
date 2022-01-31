@@ -12,12 +12,16 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Answer[]    findAll()
  * @method Answer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+
+
 class AnswerRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Answer::class);
     }
+
     // /**
     //  * @return Answer[] Returns an array of Answer objects
     //  */
@@ -33,7 +37,9 @@ class AnswerRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    *
+
+    */
+
     /*
     public function findOneBySomeField($value): ?Answer
     {

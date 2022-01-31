@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeImmutable;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
@@ -40,7 +41,7 @@ class Question
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private \DateTimeImmutable $createdAt;
+    private ?DateTimeImmutable $createdAt = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
@@ -63,7 +64,7 @@ class Question
     {
         $this->answers = new ArrayCollection();
         $this->tags = new ArrayCollection();
-        $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     public function getId(): int
