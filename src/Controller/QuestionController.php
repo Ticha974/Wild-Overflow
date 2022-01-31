@@ -34,17 +34,19 @@ class QuestionController extends AbstractController
             ['questions' => $questions]
         );
     }
+
     /**
      * @Route("/new", name="new")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $question = new Question();
-
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 4]);
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $question->setUser($user);
             $entityManager->persist($question);
             $entityManager->flush();
             return $this->redirectToRoute('home');
