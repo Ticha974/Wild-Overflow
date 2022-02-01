@@ -48,6 +48,8 @@ class QuestionController extends AbstractController
             $question->setUser($user);
             $entityManager->persist($question);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Your question has been submitted');
             return $this->redirectToRoute('home');
         }
         return $this->render('question/new.html.twig', ["form" => $form->createView()]);
@@ -62,5 +64,26 @@ class QuestionController extends AbstractController
             'question/show.html.twig',
             ['question' => $question]
         );
+    }
+
+    /**
+     * @Route("/{id}/edit", name= "edit", methods={"GET", "POST"})
+     */
+
+    public function edit(Request $request, Question $question, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('question/edit.html.twig', [
+            'question' => $question,
+            'form' => $form,
+        ]);
     }
 }

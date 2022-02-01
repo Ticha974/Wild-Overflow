@@ -33,6 +33,9 @@
                     <h3 class="text-primary"></h3>
                     <p> <style> a { text-decoration: none; color: #ff6c71;}</style>{{ question.content|raw }}</p>
                 </div>
+            {% if app.user and app.user.id == question.user.id %}
+                <a href="{{ path('question_edit', {'id': question.id}) }}" style="text-decoration: none; color: #ff6c71"  class="btn">Edit question</a>
+            {% endif %}
         </div>
         <div class="row-tag">
             {% for tag in question.tags %}

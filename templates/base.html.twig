@@ -9,11 +9,11 @@
 			{% block title %}Wild Overflow{% endblock %}
 		</title>
 		<link href="/assets/styles/layout.css" rel="stylesheet">
+
 		{% block stylesheets %}
 		{% endblock %}
 
-		{% block javascripts %}
-		{% endblock %}
+
 		{% include 'navbar.html.twig' %}
 	</head>
 	<body>
@@ -22,4 +22,7 @@
 
 	</body>
 	{% include 'footer.html.twig' %}
+		{% block javascripts %}
+	{% endblock %}
+
 </html>
