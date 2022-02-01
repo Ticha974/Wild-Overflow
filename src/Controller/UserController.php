@@ -12,15 +12,16 @@ use App\Entity\User;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/{id}", name="user")
+     * @Route("/user", name="user")
      */
     public function index(): Response
     {
-        $user = new User();
-
+        $questions = $this->getDoctrine()
+            ->getRepository(Question::class)
+            ->findAll();
         return $this->render(
             'user/user.html.twig',
-            ['user' =>  $user]
+            ['questions' => $questions]
         );
     }
 }
