@@ -4,16 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Answer;
 use App\Entity\Question;
-use App\Entity\User;
-use App\Entity\Tag;
-use App\Entity\Answer;
 use App\Form\QuestionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\User;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
@@ -21,13 +17,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
  */
 class QuestionController extends AbstractController
 {
-    private $slugger;
-
-    public function __construct(SluggerInterface $slugger)
-    {
-        $this->slugger = $slugger;
-    }
-
     /**
      * @Route("/", name="index")
      * @return Response A response instance
@@ -60,8 +49,7 @@ class QuestionController extends AbstractController
     /**
      * @Route("/new", name="new")
      */
-  
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
@@ -69,7 +57,7 @@ class QuestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $question->setUser($this->getUser());
-            $slug = $this->slugger->slug($question->getTitle());
+            $slug = $slugger->slug($question->getTitle());
             $question->setSlug($slug);
             $entityManager->persist($question);
             $entityManager->flush();
