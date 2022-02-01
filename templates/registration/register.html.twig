@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
 
 {% block title %}Register{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
     <link href="/assets/styles/form.css" rel="stylesheet">
+    <style>
+        input#registration_form_email {
+       height: 30px;
+       }
+       input#registration_form_username {
+       height: 30px;
+       }
+       input#registration_form_plainPassword {
+       height: 30px;
+       }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -16,7 +27,7 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
-<div class="row">
+<div class="row" style="width: 400px;">
     <div class="col" id="some-custom-id">
     {{ form_row(registrationForm.username) }}
     </div>
@@ -31,7 +42,12 @@
     <div class="col" id="some-custom-id">
         {{ form_row(registrationForm.agreeTerms) }}
     </div>
-        <button type="submit" class="btn" style="background-color: #999999">Register</button>
+        <button type="submit" class="btn" style="margin-top: 10px; background-color: #ff6c71; color: #fffbfb; border-bottom-color: #9d4447; border-left-color: #9d4447; border-right-color: #9d4447; border-top-color: #9d4447;">Register</button>
     {{ form_end(registrationForm) }}
 </div>
+
+    <div id="login" class="row" style="width: 400px; text-align: center; ">
+        <h2 class="title small-title" style="margin-top: 0;">Already have an account?</h2>
+        <strong>Log in&nbsp;? <a id="linkLogin" class="text-link" href="/login" title="Run to login page" style="color: #ff6c71;">I log in to my account</a></strong>
+    </div>
 {% endblock %}

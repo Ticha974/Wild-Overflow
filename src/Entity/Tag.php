@@ -36,6 +36,15 @@ class Tag
      */
     private string $slug;
 
+     * @ORM\Column(type="string", length=255)
+     */
+    private $symbolUrl;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $colorCode;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -71,7 +80,6 @@ class Tag
         if (!$this->questions->contains($question)) {
             $this->questions[] = $question;
         }
-
         return $this;
     }
 
@@ -82,6 +90,7 @@ class Tag
         return $this;
     }
 
+
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -90,6 +99,28 @@ class Tag
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+    }
+  
+    public function getSymbolUrl(): ?string
+    {
+        return $this->symbolUrl;
+    }
+
+    public function setSymbolUrl(string $symbolUrl): self
+    {
+        $this->symbolUrl = $symbolUrl;
+
+        return $this;
+    }
+
+    public function getColorCode(): ?string
+    {
+        return $this->colorCode;
+    }
+
+    public function setColorCode(string $colorCode): self
+    {
+        $this->colorCode = $colorCode;
 
         return $this;
     }
