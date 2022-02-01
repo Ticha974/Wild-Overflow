@@ -32,6 +32,10 @@ class Tag
     private Collection $questions;
 
     /**
+     *  @ORM\Column(type="string", length=255)
+     */
+    private string $slug;
+
      * @ORM\Column(type="string", length=255)
      */
     private $symbolUrl;
@@ -86,6 +90,17 @@ class Tag
         return $this;
     }
 
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+    }
+  
     public function getSymbolUrl(): ?string
     {
         return $this->symbolUrl;

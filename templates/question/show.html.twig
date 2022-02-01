@@ -4,6 +4,58 @@
 
 {% block stylesheets %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<style>
+    .answer-row {
+        border-color: #ff6c71;
+        border-radius: 5px;
+        border-style: solid;
+        padding: 22px;
+        width: 850px;
+        margin-bottom: 30px;
+        box-shadow: 6px 6px 6px #808080;
+    }
+    .btnAnswer {
+        margin-bottom: 30px;
+        font-size: large;
+        font-weight: bold;
+        color: #ff6c71;
+        border-bottom-color: #ff6c71;
+        border-left-color: #ff6c71;
+        border-right-color: #ff6c71;
+        border-top-color: #ff6c71;
+        text-decoration-color: #ff6c71;
+        width: 240px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .py6 {
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
+    }
+    .mtn8 {
+        margin-top: 20px !important;
+        margin-left: 150px !important;
+    }
+    .fc-green-500{
+        color: rgb(72, 168, 104) !important
+    }
+    .ta-center {
+        text-align: center !important;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font: inherit;
+        font-size: 100%;
+        vertical-align: baseline;
+        display: block;
+    }
+    .svg-icon {
+        vertical-align: bottom;
+        fill: green;
+    }
+
+</style>
 {% endblock %}
 
 {% block javascripts %}
@@ -15,7 +67,7 @@
     <h1 class="header text-center"></h1>
     <div class="container">
         <div class="row justify-content-center">
-                <div class="col-8">
+                <div class="col-8 border-bottom">
                     <h3 class="text-primary">{{ question.title }}</h3>
                     <p>{{ question.content|raw }}</p>
                 </div>
@@ -27,14 +79,50 @@
         </div>
         <div class="row justify-content-center">
                 {% for answer in question.answers %}
-
-                <div class="col-8">
+                    <div class="row border-bottom">
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                         {% if (answer.isValid) %}
+                             <div class="js-accepted-answer-indicator flex--item fc-green-500 py6 mtn8 col-1" data-s-tooltip-placement="right" tabindex="0" role="note" aria-label="Accepted" data-controller="null s-tooltip" aria-describedby="--stacks-s-tooltip-vtqs3f50">
+                                 <div class="ta-center">
+                                     <svg aria-hidden="true" class="svg-icon iconCheckmarkLg" width="36" height="36" viewBox="0 0 36 36"><path d="m6 14 8 8L30 6v8L14 30l-8-8v-8Z"></path></svg>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                <div class="col-sm-8 col-lg-7 col-md-7">
                     <p class="text-info"><u>{{ answer.user.username }}</u></p>
                     <p>{{ answer.content|raw }}</p>
                 </div>
+
             {% else %}
-            <p>No Answer</p>
+                <div class="col-8">
+            <p>No Answer</p></div>
+                </div>
             {% endfor %}
         </div>
     </div>
+{% if app.user %}
+    <div class="container">
+        <div class="row justify-content-center">
+             <div class="col-8">
+                <h4>Your answer</h4>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+        {{ form_start(form) }}
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
+        </div>
+        <div class="row answer-row">
+            <div class="col" id="some-custom-id">
+                {{ form_row(form.content) }}
+            </div>
+        </div>
+        <button  type="submit" class="btn btnAnswer">Send answer</button>
+        {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
