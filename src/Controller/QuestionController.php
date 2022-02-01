@@ -3,14 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Question;
-use App\Entity\Tag;
 use App\Entity\User;
+use App\Entity\Tag;
+use App\Entity\Answer;
 use App\Form\QuestionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+
 
 /**
  * @Route("/question", name="question_")
@@ -26,7 +28,19 @@ class QuestionController extends AbstractController
         $questions = $this->getDoctrine()
             ->getRepository(Question::class)
             ->findAll();
-
+        return $this->render(
+            'question/index.html.twig',
+            ['questions' => $questions]
+        );
+    }
+    /**
+     * @Route("/latest", name="latest")
+     */
+    public function latest(): Response
+    {
+        $questions = $this->getDoctrine()
+            ->getRepository(Question::class)
+            ->findBy([], ['createdAt' => 'DESC']);
         return $this->render(
             'question/index.html.twig',
             ['questions' => $questions]

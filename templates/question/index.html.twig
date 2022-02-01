@@ -35,6 +35,8 @@
 
 {% block body %}
     <h1 class="header text-center">All Questions</h1>
+    <a href="{{ path('question_latest')}}" class="text-primary" style="text-decoration: none">Latest Question
+    </a>
     <div class="container">
         {% for question in questions %}
         <div class="row justify-content-center">
