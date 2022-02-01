@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Answer;
 use App\Entity\Question;
 use App\Form\QuestionType;
+use App\Form\AnswerType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ class QuestionController extends AbstractController
             ['questions' => $questions]
         );
     }
-  
+
     /**
      * @Route("/latest", name="latest")
      */
@@ -45,7 +46,7 @@ class QuestionController extends AbstractController
             ['questions' => $questions]
         );
     }
-  
+
     /**
      * @Route("/new", name="new")
      */

@@ -93,8 +93,17 @@
                     <p class="text-info"><u>{{ answer.user.username }}</u></p>
                     <p>{{ answer.content|raw }}</p>
                 </div>
-
-            {% else %}
+                    {% if app.user == question.user %}
+                        {% if not answer.isValid %}
+                    <div class="row">
+                        <div class="col-6 offset-2">
+                            <!--<button type="submit" class="btn btn-outline-success" style="width: 215px">Validate this answer</button>-->
+                            <a href="{{ path('myquestion_validateAnswer', {'id': answer.id }) }}" onclick="return confirm('Please confirm to validate this answer');" class="btn btn-outline-success" style="width: 215px">Validate this answer</a>
+                        </div>
+                    </div>
+                            {% endif %}
+                    {% endif %}
+                {% else %}
                 <div class="col-8">
             <p>No Answer</p></div>
                 </div>
