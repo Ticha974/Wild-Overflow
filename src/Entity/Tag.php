@@ -102,7 +102,6 @@ class Tag
 
         return $this;
     }
-  
     public function getSymbolUrl(): ?string
     {
         return $this->symbolUrl;
