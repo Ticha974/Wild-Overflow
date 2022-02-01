@@ -2,22 +2,31 @@
 
 namespace App\Controller;
 
+use App\Entity\Answer;
 use App\Entity\Question;
-
 use App\Entity\Tag;
+use App\Form\AnswerType;
 use App\Form\QuestionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-
+use App\Entity\User;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/question", name="question_")
  */
 class QuestionController extends AbstractController
 {
+    private $slugger;
+
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     /**
      * @Route("/", name="index")
      * @return Response A response instance
@@ -35,33 +44,47 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show")
-     */
-    public function show(Question $question): Response
-    {
-        return $this->render(
-            'question/show.html.twig',
-            ['question' => $question]
-        );
-
-    /**
      * @Route("/new", name="new")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $question = new Question();
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => 3]);
-
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $question->setUser($user);
+            $question->setUser($this->getUser());
+            $slug = $this->slugger->slug($question->getTitle());
+            $question->setSlug($slug);
             $entityManager->persist($question);
             $entityManager->flush();
-            return $this->redirectToRoute('home');
-        }
-        return $this->render('question/new.html.twig', ["form" => $form->createView()]);
 
+            return $this->redirectToRoute('question_index');
+        }
+
+        return $this->render('question/new.html.twig', ["form" => $form->createView()]);
+    }
+
+    /**
+     * @Route("/{slug}", name="show")
+     */
+    public function show(Question $question, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $answer = new Answer();
+        $form = $this->createForm(AnswerType::class, $answer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $answer->setQuestion($question);
+            $answer->setUser($this->getUser());
+            $entityManager->persist($answer);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('question_show', ['slug' => $question->getSlug()]);
+        }
+        return $this->render(
+            'question/show.html.twig',
+            ['question' => $question, 'form' => $form->createView()]
+        );
     }
 }

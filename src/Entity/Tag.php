@@ -31,6 +31,11 @@ class Tag
      */
     private Collection $questions;
 
+    /**
+     *  @ORM\Column(type="string", length=255)
+     */
+    private string $slug;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -73,6 +78,18 @@ class Tag
     public function removeQuestion(Question $question): self
     {
         $this->questions->removeElement($question);
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

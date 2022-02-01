@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block body %}
+{% if app.user %}
     <h1>Ask your question</h1>
     <br>
     {{ form_start(form) }}
@@ -26,4 +27,7 @@
     </div>
     <button  type="submit" class="btn">Send question</button>
     {{ form_end(form) }}
+{% else %}
+    {{ render(url('app_login')) }}
+{% endif %}
 {% endblock %}
