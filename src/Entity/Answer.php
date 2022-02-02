@@ -3,10 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
-use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -23,13 +22,15 @@ class Answer
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Please fill the answer.")
+     *
      */
     private string $content;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private ?\DateTimeImmutable $createdAt;
+    private DateTimeImmutable $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")
@@ -48,6 +49,11 @@ class Answer
      */
     private bool $isValid;
 
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+        $this->isValid = false;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -65,12 +71,12 @@ class Answer
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
