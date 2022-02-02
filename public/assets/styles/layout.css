@@ -60,7 +60,7 @@ body {
     color:var(--clr);
 }
 .navigation ul li.active a .icon {
-    transform: translateY(-35px);
+    transform: translateY(-45px);
 }
 .navigation ul li a .text {
     position: absolute;
