@@ -90,7 +90,8 @@
                         {% endif %}
                     </div>
                 <div class="col-sm-8 col-lg-7 col-md-7">
-                    <p class="text-info"><u>{{ answer.user.username }}</u></p>
+                    <p><span class="text-info"><u>{{ answer.user.username }}</u></span>
+                        <span class="text-muted"><small>Answered : {{ answer.createdAt|date("m/d/Y") }}</small></span></p>
                     <p>{{ answer.content|raw }}</p>
                 </div>
                     {% if app.user == question.user %}
@@ -134,5 +135,8 @@
             </div>
         </div>
     </div>
+
+    {% else %}
+    <a href="{{ path('app_login') }}">Please login to submit your answer</a>
     {% endif %}
 {% endblock %}
