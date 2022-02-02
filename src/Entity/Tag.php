@@ -100,8 +100,10 @@ class Tag
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
     }
-  
+
     public function getSymbolUrl(): ?string
     {
         return $this->symbolUrl;

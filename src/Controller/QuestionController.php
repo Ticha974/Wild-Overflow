@@ -46,7 +46,7 @@ class QuestionController extends AbstractController
             ['questions' => $questions]
         );
     }
-  
+
     /**
      * @Route("/new", name="new")
      */
@@ -97,8 +97,12 @@ class QuestionController extends AbstractController
      * @Route("/{id}/edit", name= "edit", methods={"GET", "POST"})
      */
 
-    public function edit(Request $request, Question $question, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
-    {
+    public function edit(
+        Request $request,
+        Question $question,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger
+    ): Response {
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
