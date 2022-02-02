@@ -114,6 +114,12 @@ class Answer
 
     public function setIsValid(bool $isValid): self
     {
+        if ($isValid) {
+            foreach ($this->getQuestion()->getAnswers() as $ans) {
+                $ans->setIsValid(false);
+            }
+        }
+
         $this->isValid = $isValid;
 
         return $this;

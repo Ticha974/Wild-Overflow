@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * @Route("/questions/tag", name="tag_")
+ * @Route("/question/tag", name="tag_")
  */
 class TagController extends AbstractController
 {

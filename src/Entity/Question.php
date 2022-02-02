@@ -155,9 +155,9 @@ class Question
         return $this;
     }
 
-    public function isValidated(\Doctrine\ORM\PersistentCollection $answers): bool
+    public function isValidated(): bool
     {
-        foreach ($answers as $answer) {
+        foreach ($this->getAnswers() as $answer) {
             if ($answer->getIsValid()) {
                 return true;
             }

@@ -4,14 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Answer;
 use App\Entity\Question;
-use App\Form\AnswerType;
-use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/myquestion", name="myquestion_")
@@ -39,18 +35,7 @@ class MyQuestionController extends AbstractController
      */
     public function validateAnswer(Answer $answer, EntityManagerInterface $entityManager): Response
     {
-        if ($answer->getQuestion()->isValidated($answer->getQuestion()->getAnswers())) {
-            foreach ($answer->getQuestion()->getAnswers() as $ans) {
-                if ($ans->getIsValid() == true) {
-                    $ans->setIsValid(false);
-                    $entityManager->persist($answer);
-                    break;
-                }
-            }
-        }
-
         $answer->setIsValid(true);
-        $entityManager->persist($answer);
         $entityManager->flush();
 
         return $this->redirectToRoute('question_show', ['slug' => $answer->getQuestion()->getSlug()]);

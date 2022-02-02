@@ -52,21 +52,24 @@ class QuestionController extends AbstractController
      */
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-        $question = new Question();
-        $form = $this->createForm(QuestionType::class, $question);
-        $form->handleRequest($request);
+       if ($this->getUser()) {
+           $question = new Question();
+           $form = $this->createForm(QuestionType::class, $question);
+           $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $question->setUser($this->getUser());
-            $slug = $slugger->slug($question->getTitle());
-            $question->setSlug($slug);
-            $entityManager->persist($question);
-            $entityManager->flush();
+           if ($form->isSubmitted() && $form->isValid()) {
+               $question->setUser($this->getUser());
+               $slug = $slugger->slug($question->getTitle());
+               $question->setSlug($slug);
+               $entityManager->persist($question);
+               $entityManager->flush();
 
-            return $this->redirectToRoute('question_index');
-        }
+               return $this->redirectToRoute('question_index');
+           }
 
-        return $this->render('question/new.html.twig', ["form" => $form->createView()]);
+           return $this->render('question/new.html.twig', ["form" => $form->createView()]);
+       }
+       return $this->redirectToRoute('app_login');
     }
 
     /**
