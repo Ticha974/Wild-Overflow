@@ -153,3 +153,21 @@ p#text, .content-question {
 .btn.ask:hover {
     background-color: #c25255;
 }
+
+.text-muted-show {
+    --bs-text-opacity: 1;
+    color: #b7b6b6 !important;
+}
+
+.btn.edit {
+    text-decoration: none;
+    color: #ff6c71;
+    width: 150px;
+    margin: auto;
+    border-color: #ff6c71;
+}
+
+.btn.edit:hover {
+    background-color: #ff6c71;
+    color: #fff;
+}

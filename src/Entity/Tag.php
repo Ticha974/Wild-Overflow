@@ -39,12 +39,12 @@ class Tag
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $symbolUrl;
+    private string $symbolUrl;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $colorCode;
+    private string $colorCode;
 
     public function __construct()
     {
