@@ -19,11 +19,12 @@ class QuestionRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Question::class);
     }
+
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */
     /*
-    public function findByExampleField($value)
+    public function findBy($createdAt)
     {
         return $this->createQueryBuilder('q')
             ->andWhere('q.exampleField = :val')
@@ -35,6 +36,8 @@ class QuestionRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
     /*
     public function findOneBySomeField($value): ?Question
     {

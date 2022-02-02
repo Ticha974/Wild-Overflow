@@ -41,10 +41,17 @@
                 <span class="text">Profile</span>
             </a>
         </li>
-        <div class="indicator" id="indicator"></div>
+
+
+        {% if app.user %}
+            <a href="{{ path('app_logout', {'token' : csrf_token('logout')}) }}">Logout</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Login</a>
+        {% endif %}
+        <div class="indicator"></div>
+
     </ul>
 </div>
-
 {% block javascripts %}
     <script> const list = document.querySelectorAll(".list");
             function activeLink()

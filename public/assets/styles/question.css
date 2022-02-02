@@ -61,11 +61,12 @@
 }
 
 .justify-content-center {
-    justify-content: center !important;
+    justify-content: center;
     width: 850px;
     margin: auto;
     margin-top: 35px;
 }
+
 
 .row {
     display: flex;
@@ -119,3 +120,6 @@ h1.header {
     margin-top: 20px;
 }
 
+p#text, .content-question {
+    width: 700px;
+}
