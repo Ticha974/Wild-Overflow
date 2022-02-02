@@ -123,3 +123,33 @@ h1.header {
 p#text, .content-question {
     width: 700px;
 }
+
+.list-inline-item:hover {
+    font-weight: bold;
+    background-color: #484848;
+
+}
+
+.filter {
+    color: #484848;
+}
+
+.filter:hover {
+    color: #FFFFFF;
+}
+
+#ask {
+    color: #FFFFFF;
+}
+
+.btn.ask {
+    background-color: #ff6c71;
+    border-bottom-color: #9d4447;
+    border-left-color: #9d4447;
+    border-right-color: #9d4447;
+    border-top-color: #9d4447;
+}
+
+.btn.ask:hover {
+    background-color: #c25255;
+}
