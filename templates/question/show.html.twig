@@ -114,10 +114,9 @@
         </div>
         <div class="row justify-content-center" >
             <div class="col-question col-lg-8" STYLE="border-color: #484848; background-color: #777676; flex-direction: column; margin-bottom: 30px !important;">
-                <div class="col-8">
                 {% for answer in question.answers %}
-                    <div class="row border-bottom">
-                        <div class="col-2">
+                    <div class="row ">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             {% if (answer.isValid) %}
                              <div class="js-accepted-answer-indicator flex--item fc-green-500 py6 mtn8 col-1" data-s-tooltip-placement="right" tabindex="0" role="note" aria-label="Accepted" data-controller="null s-tooltip" aria-describedby="--stacks-s-tooltip-vtqs3f50">
                                  <div class="ta-center">
@@ -126,30 +125,33 @@
                             </div>
                             {% endif %}
                         </div>
-                <div class="col-8 ">
+                <div class="col-sm-8 col-lg-8 col-md-8 pt-3">
                     <p><span class="text-info answer">{{ answer.user.username }}</span>
                         <span class="text-muted-show ms-4"><small>Answered : {{ answer.createdAt|date("m/d/Y") }}</small></span></p>
                     <p>{{ answer.content|raw }}</p>
-                </div>
-                    </div>
+                </div></div>
+            <div class="row border-bottom pb-3">
+                    {% if app.user == question.user %}
+                        {% if not (answer.isValid) %}
+
+                            <!--<button type="submit" class="btn btn-outline-success" style="width: 215px">Validate this answer</button>-->
+                            <a href="{{ path('myquestion_validateAnswer', {'id': answer.id }) }}" onclick="return confirm('Please confirm to validate this answer');" class="btn valid" style="width: 215px">Validate this answer</a>
+
+                        {% endif %}
+                    {% endif %}</div>
+
                         {% else %}
-                {% if (question.answers.count) == 0 %}
+                {% if (question.answers.count)  == 0 %}
                 <div class="col-8" style="text-align: center;">
                     <h4 class="title small-title" style="margin-top: 0;">Be the first to answer this question!</h4>
                     {% if not app.user %}
                         <strong><a id="linkLogin" class="text-link" href="/login" title="Run to login page" style="color: #f67b7f;">I log in to my account</a></strong>
                     {% endif %}
                 {% endif %}
-                    {% if app.user == question.user %}
-                        {% if not (answer.isValid) %}
-                            <!--<button type="submit" class="btn btn-outline-success" style="width: 215px">Validate this answer</button>-->
-                            <a href="{{ path('myquestion_validateAnswer', {'id': answer.id }) }}" onclick="return confirm('Please confirm to validate this answer');" class="btn btn-outline-success" style="width: 215px">Validate this answer</a>
-                        {% endif %}
-                    {% endif %}
+
                 </div>
             {% endfor %}
         </div>
-
     </div>
         </div>
     </div>
@@ -177,7 +179,7 @@
         </div>
     </div>
 {% else %}
-    {% if (question.answers.count) > 0 %}
+    {% if (question.answers.count)  > 0 %}
             <h4 class="title small-title" style="margin-top: 0;">To answer this question!</h4>
             <strong><a id="linkLogin" class="text-link" href="/login" title="Run to login page" style="color: #ff6c71;">I log in to my account</a></strong>
     {% endif %}
