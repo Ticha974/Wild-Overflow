@@ -15,12 +15,18 @@
         border-radius: 50%;
         width: 80px;
     }
+
     .tag span{
         background-color: #fcabb0;
         border: 1px solid transparent;
         border-radius: 3px;
         padding: 2px;
     }
+
+    .filter{
+        background-color: lightgray;
+    }
+    .filter:visited { text-decoration: none; }
 </style>
     {{ parent() }}
     <link href="/assets/styles/bootstrap.css" rel="stylesheet">
@@ -31,15 +37,13 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        const list = document.querySelectorAll('.list');
-        function activeLink(){
-            list.forEach((item) =>
-                item.classList.remove('active'));
-            this.classList.add('active');
-        }
-        list.forEach((item) =>
-            item.addEventListener('click', activeLink));
+        $(document).ready(function(){
+            $('#newest').click(function () {
+                $(this).remove(); // remove element which is being clicked
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 {% endblock %}
@@ -74,9 +78,9 @@
             </div>
             <div class="col-5">
                 <ul class="list-inline">
-                    <a href="?tab=newest" class="filter"><li class="list-inline-item border " >Newest</li></a>
-                    <a href="?tab=active" class="filter"><li class="list-inline-item border">Active</li></a>
-                    <a href="?tab=unanswered" class="filter"><li class="list-inline-item border">Unanswered</li></a>
+                    <li id="newest" class="list-inline-item border {% if '?tab=newest' in (app.request.requesturi) %}filter{% endif %}"><a href="?tab=newest">Newest</a></li>
+                    <li class="list-inline-item border {% if '?tab=active' in (app.request.requesturi) %}filter{% endif %}"><a href="?tab=active">Active</a></li>
+                    <li class="list-inline-item border {% if '?tab=unanswered' in (app.request.requesturi) %}filter{% endif %}"><a href="?tab=unanswered">Unanswered</a></li>
                 </ul>
             </div>
         </div>
