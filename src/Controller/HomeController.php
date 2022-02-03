@@ -11,26 +11,27 @@ use App\Entity\Tag;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/home", name="home")
      */
     public function index(): Response
     {
-
+        $question = new Question();
         return $this->render(
-            'home/index.html.twig'
+            'home/index.html.twig',
+            ['question', $question]
         );
     }
     /**
-     * @Route("/home", name="tags")
+     * @Route("/", name="tags")
      */
     public function show(): Response
     {
-        $questions = $this->getDoctrine()
+        $tag = $this->getDoctrine()
             ->getRepository(tag::class)
             ->findAll();
         return $this->render(
             'home/home.html.twig',
-            ['tag' => $questions]
+            ['tag' => $tag]
         );
     }
 }

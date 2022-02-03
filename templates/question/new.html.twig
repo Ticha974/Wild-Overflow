@@ -4,9 +4,26 @@
 {% block stylesheets %}
     {{ parent() }}
     <link href="/assets/styles/form.css" rel="stylesheet">
+    <link href="/assets/styles/crumb.css" rel="stylesheet">
+
 {% endblock %}
 
 {% block body %}
+    <div>
+        <ul class="breadcrumb">
+            <li><a href="/">
+                   Home</a>
+            </li>
+            <li><a href="/question">
+                    Question</a>
+            </li>
+            <li>
+                Ask-Question
+            </li>
+        </ul>
+    </div>
+    <div>
+    </div>
 {% if app.user %}
     <h1>Ask your question</h1>
     <br>
@@ -28,6 +45,5 @@
     <button  type="submit" class="btn">Send question</button>
     {{ form_end(form) }}
 {% else %}
-    {{ render(url('app_login')) }}
 {% endif %}
 {% endblock %}
