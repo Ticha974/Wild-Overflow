@@ -98,7 +98,7 @@
             </div></div>
             {% endfor %}
 
-        {% elseif  '?tab=unanswered' in (app.request.requesturi) %}
+        {% elseif '?tab=unanswered' in (app.request.requesturi) %}
             {% for question in tag.questions %}
                 {% if question.answers.count == 0 %}
                     <div class="container">
@@ -128,7 +128,7 @@
                 {% endif %}
             {% endfor %}
 
-        {% elseif  '?tab=active' in (app.request.requesturi) %}
+        {% elseif '?tab=active' in (app.request.requesturi) %}
             {% for question in tag.questions %}
                 {% if not question.validated(question.answers) %}
                     <div class="container">

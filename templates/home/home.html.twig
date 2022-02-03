@@ -19,7 +19,8 @@
                     </div>
     <div class="row">
         <div class="col-12">
-            <a href="{{ path('question_new')}}"> Ask Question</a></div>
+            <a href="{{ path('question_new')}}">Ask Question</a>
+        </div>
     </div>
                     {% for tags in tag %}
                          <div class="container" >
@@ -31,9 +32,8 @@
                                     <div class=" text-left"><h2>{{ tags.name }}</h2></div>
                                 </div>
                                 <div class="col-5">
-
-                                    <div class="col-sm text-right pt-3" >
-                                        <a href="{{ path('tag_question',{slug: tags.slug} )}}"> See more Questions</a>
+                                    <div class="col-sm text-right pt-3">
+                                        <a href="{{ path('tag_question',{slug: tags.slug} )}}">See more Questions</a>
                                     </div>
                                 </div>
                              </div>
