@@ -17,6 +17,7 @@ body {
     min-height: 100vh;
     background: var(--clr);
 }
+
 .navigation{
     width: 900px;
     height: 70px;
@@ -66,7 +67,7 @@ body {
     position: absolute;
     color: var(--clr);
     font-weight:400;
-    font-size: 0.7em;;
+    font-size: 0.7em;
     letter-spacing: 0.05em;
     transition: 0.5s;
     opacity: 0;

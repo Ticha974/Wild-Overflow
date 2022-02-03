@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Answer;
 use App\Entity\Question;
-use App\Form\QuestionType;
 use App\Form\AnswerType;
+use App\Form\QuestionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,24 +52,25 @@ class QuestionController extends AbstractController
      */
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-       if ($this->getUser()) {
-           $question = new Question();
-           $form = $this->createForm(QuestionType::class, $question);
-           $form->handleRequest($request);
+        if ($this->getUser()) {
+            $question = new Question();
+            $form = $this->createForm(QuestionType::class, $question);
+            $form->handleRequest($request);
 
-           if ($form->isSubmitted() && $form->isValid()) {
-               $question->setUser($this->getUser());
-               $slug = $slugger->slug($question->getTitle());
-               $question->setSlug($slug);
-               $entityManager->persist($question);
-               $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $question->setUser($this->getUser());
+                $slug = $slugger->slug($question->getTitle());
+                $question->setSlug($slug);
+                $entityManager->persist($question);
+                $entityManager->flush();
 
-               return $this->redirectToRoute('question_index');
-           }
+                $this->addFlash('success', 'Your question has been submitted');
+                return $this->redirectToRoute('home');
+            }
 
-           return $this->render('question/new.html.twig', ["form" => $form->createView()]);
-       }
-       return $this->redirectToRoute('app_login');
+            return $this->render('question/new.html.twig', ["form" => $form->createView()]);
+        }
+        return $this->redirectToRoute('app_login');
     }
 
     /**
@@ -93,5 +94,30 @@ class QuestionController extends AbstractController
             'question/show.html.twig',
             ['question' => $question, 'form' => $form->createView()]
         );
+    }
+
+    /**
+     * @Route("/{id}/edit", name= "edit", methods={"GET", "POST"})
+     */
+
+    public function edit(
+        Request $request,
+        Question $question,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger
+    ): Response {
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('question/edit.html.twig', [
+            'question' => $question,
+            'form' => $form,
+        ]);
     }
 }

@@ -35,6 +35,7 @@ class Tag
      *  @ORM\Column(type="string", length=255)
      */
     private string $slug;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -102,6 +103,7 @@ class Tag
 
         return $this;
     }
+
     public function getSymbolUrl(): ?string
     {
         return $this->symbolUrl;
