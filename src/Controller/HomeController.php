@@ -15,9 +15,10 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-
+        $question = new Question();
         return $this->render(
-            'home/index.html.twig'
+            'home/index.html.twig',
+            ['question', $question]
         );
     }
     /**
@@ -25,12 +26,12 @@ class HomeController extends AbstractController
      */
     public function show(): Response
     {
-        $questions = $this->getDoctrine()
+        $tag = $this->getDoctrine()
             ->getRepository(tag::class)
             ->findAll();
         return $this->render(
             'home/home.html.twig',
-            ['tag' => $questions]
+            ['tag' => $tag]
         );
     }
 }

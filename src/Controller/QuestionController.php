@@ -24,6 +24,7 @@ class QuestionController extends AbstractController
      */
     public function index(): Response
     {
+        $question = new Question();
         $questions = $this->getDoctrine()
             ->getRepository(Question::class)
             ->findAll();
@@ -38,6 +39,7 @@ class QuestionController extends AbstractController
      */
     public function latest(): Response
     {
+
         $questions = $this->getDoctrine()
             ->getRepository(Question::class)
             ->findBy([], ['createdAt' => 'DESC']);
@@ -48,10 +50,11 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="new")
+     * @Route("/ask-question", name="new")
      */
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
+        $question = new Question();
         if ($this->getUser()) {
             $question = new Question();
             $form = $this->createForm(QuestionType::class, $question);
@@ -67,8 +70,10 @@ class QuestionController extends AbstractController
                 $this->addFlash('success', 'Your question has been submitted');
                 return $this->redirectToRoute('home');
             }
-
-            return $this->render('question/new.html.twig', ["form" => $form->createView()]);
+            return $this->render(
+                'question/new.html.twig',
+                ["form" => $form->createView()]
+            );
         }
         return $this->redirectToRoute('app_login');
     }

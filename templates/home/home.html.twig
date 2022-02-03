@@ -48,8 +48,7 @@
     width: 850px;
     margin-bottom: 30px;
         position: relative;
-
-    }
+        }
     .tag {
 
         border-color: black;
@@ -117,6 +116,16 @@
                     <h1 style="color:whitesmoke;text-align: center"> Find the best answer to your technical question, <br>help others answer theirs</h1>
                     </div>
                     <div style="height: 20px"></div>
+    <div>
+        <ul class="breadcrumb">
+            {% for crumbs in crumb %}
+                <li>
+                    {{ crumbs }}
+                </li>
+            {% endfor %}
+            </ul>
+    </div>
+
                     {% for tags in tag %}
                          <div class="container" >
                              <div class="row" style="height: 50px">

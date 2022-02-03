@@ -26,32 +26,22 @@
     <link href="/assets/styles/form.css" rel="stylesheet">
     <link href="/assets/styles/question.css" rel="stylesheet">
     <link href="/assets/styles/layout.css" rel="stylesheet">
+    <link href="/assets/styles/crumb.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    <h1 class="header text-center">All Questions</h1>
+    <div>
+        <ul class="breadcrumb">
+            <li><a href="/">
+                    Home</a>
+            </li>
+            <li>
+                    Question
+            </li>
 
+        </ul>
+    </div>
     <div class="container">
-        <div class="row">
-            <div class="col-4 offset-2 border-bottom">
-                <ul class="list-inline">
-                    <li class="list-inline-item border "><a href="?question=newest">Newest</a></li>
-                    <li class="list-inline-item border"><a href="?tab=active">Active</a></li>
-                    <li class="list-inline-item border"><a href="?tab=unanswered">Unanswered</a></li>
-                </ul>
-            </div>
-            <div class="col-2">
-                <a class="text-primary" href="{{ path('question_new')}}"> Ask Question</a>
-            </div>
-        </div>
-
-        {% if '?question=newest' in (app.request.requesturi) %}
-        {% for question in questions|sort|reverse %}
-        <div class="row justify-content-center">
-                <div class="col-lg-1">
-                    <div class="status">
-
-<div class="container">
     <div class="row justify-content-between">
         <div class="col-3">
             <h3 class="header text-center">All Questions</h3>
@@ -69,51 +59,26 @@
                         <p><small>Answers</small></p>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
-                        {{ question.title }}</a>
-                    <p>{{ question.content|striptags(200, '...')|raw ~ '...' }}</p>
-                </div>
-        </div>
-            <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-7">
-                    <div class="row">
-                    {% for tag in question.tags %}
-                    <div class="col-lg-1 m-3">
-                        <p class="tag"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}" class="text-primary">
-                                        {{ tag.name }}</a></small></span></p>
-                    </div>
-                    {% endfor %}
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <p class="text-muted" style="width: 150px"><small>Asked {{ question.createdAt|date("m/d/Y") }}
-                            <span class="text-info"> {{ question.user.username }}</span></small></p>
-
                 <div class="col-question col-lg-8" >
                     <div class="">
-                    <a href="{{ path('question_show', {slug: question.slug}) }}" style="text-decoration: none; color: #ff6c71; font-size: 20px; font-weight: bold; text-align: center; text-shadow: 2px 1px 3px #d05e62;">
-                    {{ question.title }}</a>
-                <p>{{ question.content|u.truncate(200, '...')|raw }}</p>
+                        <a href="{{ path('question_show', {slug: question.slug}) }}" style="text-decoration: none; color: #ff6c71; font-size: 20px; font-weight: bold; text-align: center; text-shadow: 2px 1px 3px #d05e62;">
+                            {{ question.title }}</a>
+                        <p>{{ question.content|u.truncate(200, '...')|raw }}</p>
+                    </div>
+                </div>
+                {% for tag in question.tags %}
+                <div class="col-sm align-self-center">
+                    <p class="tag  ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
+                    {% endfor %}
+                    <p class="text-muted ms-5" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                            <span class="text-info"> {{ question.user.username }}</span></small></p>
                 </div>
             </div>
-        {% for tag in question.tags %}
-            <div class="col-sm align-self-center">
-                <p class="tag  ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
-        {% endfor %}
-                <p class="text-muted ms-5" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                <span class="text-info"> {{ question.user.username }}</span></small></p>
-            </div>
         </div>
-    </div>
-</div>
-        {% else %}
-            <p>No questions yet.</p>
-        {% endfor %}
-
-    </div>
-    {% endif %}
+        </div>
+    {% else %}
+        <p>No questions yet.</p>
+    {% endfor %}
 {% endblock %}
 {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
