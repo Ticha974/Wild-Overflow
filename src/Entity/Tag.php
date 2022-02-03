@@ -39,12 +39,12 @@ class Tag
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $symbolUrl;
+    private string $symbolUrl;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $colorCode;
+    private string $colorCode;
 
     public function __construct()
     {
@@ -100,8 +100,10 @@ class Tag
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
     }
-  
+
     public function getSymbolUrl(): ?string
     {
         return $this->symbolUrl;

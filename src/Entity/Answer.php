@@ -36,7 +36,7 @@ class Answer
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?Question $question;
+    private Question $question;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="answers")
@@ -83,12 +83,12 @@ class Answer
         return $this;
     }
 
-    public function getQuestion(): ?Question
+    public function getQuestion(): Question
     {
         return $this->question;
     }
 
-    public function setQuestion(?Question $question): self
+    public function setQuestion(Question $question): self
     {
         $this->question = $question;
 
@@ -114,6 +114,12 @@ class Answer
 
     public function setIsValid(bool $isValid): self
     {
+        if ($isValid) {
+            foreach ($this->getQuestion()->getAnswers() as $ans) {
+                $ans->setIsValid(false);
+            }
+        }
+
         $this->isValid = $isValid;
 
         return $this;
