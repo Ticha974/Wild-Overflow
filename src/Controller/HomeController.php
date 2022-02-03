@@ -11,7 +11,7 @@ use App\Entity\Tag;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/home", name="home")
      */
     public function index(): Response
     {
@@ -21,7 +21,7 @@ class HomeController extends AbstractController
         );
     }
     /**
-     * @Route("/home", name="tags")
+     * @Route("/", name="tags")
      */
     public function show(): Response
     {

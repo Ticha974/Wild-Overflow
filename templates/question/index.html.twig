@@ -17,7 +17,6 @@
 
         }
         .tag span{
-            background-color: rgb(225,236,244);
             background-color: #fcabb0;
             border: 1px solid transparent;
             border-radius: 3px;
@@ -35,11 +34,24 @@
 
 
 {% block body %}
-
     <h1 class="header text-center">All Questions</h1>
-    </a>
+
     <div class="container">
-        {% for question in questions %}
+        <div class="row">
+            <div class="col-4 offset-2 border-bottom">
+                <ul class="list-inline">
+                    <li class="list-inline-item border "><a href="?question=newest">Newest</a></li>
+                    <li class="list-inline-item border"><a href="?tab=active">Active</a></li>
+                    <li class="list-inline-item border"><a href="?tab=unanswered">Unanswered</a></li>
+                </ul>
+            </div>
+            <div class="col-2">
+                <a class="text-primary" href="{{ path('question_new')}}"> Ask Question</a>
+            </div>
+        </div>
+
+        {% if '?question=newest' in (app.request.requesturi) %}
+        {% for question in questions|sort|reverse %}
         <div class="row justify-content-center">
                 <div class="col-lg-1">
                     <div class="status">
@@ -66,12 +78,14 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <p class="text-muted" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                    <p class="text-muted" style="width: 150px"><small>Asked {{ question.createdAt|date("m/d/Y") }}
                             <span class="text-info"> {{ question.user.username }}</span></small></p>
                 </div>
             </div>
         {% else %}
             <p>No questions yet.</p>
         {% endfor %}
+
     </div>
+    {% endif %}
 {% endblock %}

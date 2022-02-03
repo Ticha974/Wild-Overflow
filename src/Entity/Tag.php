@@ -36,6 +36,7 @@ class Tag
      */
     private string $slug;
 
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $symbolUrl;
