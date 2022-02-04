@@ -1,7 +1,6 @@
 ul.breadcrumb {
     text-align: left;
     list-style: none;
-    background-color: #eee;
 }
 ul.breadcrumb li {
     display: inline;
@@ -9,7 +8,7 @@ ul.breadcrumb li {
 }
 ul.breadcrumb li+li:before {
     color: black;
-    content: "/";
+    content: " >";
 }
 ul.breadcrumb li a {
     color: #0275d8;
