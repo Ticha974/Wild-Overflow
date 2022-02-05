@@ -141,7 +141,7 @@
                     {% endif %}</div>
 
                         {% else %}
-                {% if (question.answers.count)  == 0 %}
+                {% if (question.answers.count) == 0 %}
                 <div class="col-8" style="text-align: center;">
                     <h4 class="title small-title" style="margin-top: 0;">Be the first to answer this question!</h4>
                     {% if not app.user %}
@@ -179,7 +179,7 @@
         </div>
     </div>
 {% else %}
-    {% if (question.answers.count)  > 0 %}
+    {% if (question.answers.count) > 0 %}
             <h4 class="title small-title" style="margin-top: 0;">To answer this question!</h4>
             <strong><a id="linkLogin" class="text-link" href="/login" title="Run to login page" style="color: #ff6c71;">I log in to my account</a></strong>
     {% endif %}

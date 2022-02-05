@@ -21,6 +21,9 @@
         border-radius: 3px;
         padding: 2px;
     }
+    .tagName {
+        color: #ff6c71;
+    }
 </style>
     {{ parent() }}
     <link href="/assets/styles/bootstrap.css" rel="stylesheet">
@@ -31,81 +34,68 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        const list = document.querySelectorAll('.list');
-        function activeLink(){
-            list.forEach((item) =>
-                item.classList.remove('active'));
-            this.classList.add('active');
-        }
-        list.forEach((item) =>
-            item.addEventListener('click', activeLink));
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block body %}
-
-    <h1 class="header text-center"></h1>
-    <div class="container">
-        <div class="row justify-content-between">
-                <div class="col-6">
-                    <h3>Questions tagged [{{ tag.name }}]</h3>
-                </div>
-            <div class="col-3">
-                <button class="btn ask" type="button" ><a id="ask" href="{{ path('question_new') }}">Ask question</a></button>
-            </div>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-6">
+            <h3>Questions tagged [<span class="tagName">{{ tag.name }}</span>]</h3>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
-                <h4> {{ tag.questions.count }} Question(s)</h4>
-            </div>
-            <div class="col-5">
-                <ul class="list-inline">
-                    <a href="?tab=newest" class="filter"><li class="list-inline-item border " >Newest</li></a>
-                    <a href="?tab=active" class="filter"><li class="list-inline-item border">Active</li></a>
-                    <a href="?tab=unanswered" class="filter"><li class="list-inline-item border">Unanswered</li></a>
-                </ul>
-            </div>
+        <div class="col-3 pt-4">
+            <button class="btn ask" type="button" ><a id="ask" href="{{ path('question_new') }}">Ask question</a></button>
         </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <h4> {{ tag.questions.count }} Question(s)</h4>
+        </div>
+        <div class="col-5">
+            <ul class="list-inline">
+                <a href="?tab=newest" class="filter"><li class="list-inline-item border " >Newest</li></a>
+                <a href="?tab=active" class="filter"><li class="list-inline-item border">Active</li></a>
+                <a href="?tab=unanswered" class="filter"><li class="list-inline-item border">Unanswered</li></a>
+            </ul>
+        </div>
+    </div>
 </div>
-        {% if '?tab=newest' in (app.request.requesturi) %}
-            {% for question in tag.questions|sort|reverse %}
-                <!--{{ question.createdAt|date('Y-m-d H:i:s') }}-->
+    {% if '?tab=newest' in (app.request.requesturi) %}
+        {% for question in tag.questions|sort|reverse %}
+        <!--{{ question.createdAt|date('Y-m-d H:i:s') }}-->
         <div class="container">
             <div class="row justify-content-center" >
                 <div class="col-lg-1" style=" margin-right: 20px;
     margin-left: 85px;
     padding-right: 70px;">
                     <div class="status" style="margin-right: 30px">
-                            <strong>{{ question.answers.count }}</strong>
-                            <p><small>Answers</small></p>
-                        </div>
+                        <strong>{{ question.answers.count }}</strong>
+                        <p><small>Answers</small></p>
                     </div>
+                </div>
                 <div class="col-question col-lg-8" >
                     <div class="">
                         <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
                             {{ question.title }}</a>
                         <div style="color: #333333;     text-align: justify; width: 75%;">
                         <p>{{ question.content|u.truncate(200, '...')|raw }}</p>
+                        </div>
                     </div>
                 </div>
+                <div class="col-lg-3 m-4">
+                    <p class="text-muted" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                            <span class="text-info"> {{ question.user.username }}</span></small></p>
                 </div>
-                    <div class="col-lg-3 m-4">
-                        <p class="text-muted" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                                <span class="text-info"> {{ question.user.username }}</span></small></p>
-                    </div>
-            </div></div>
-            {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
 
         {% elseif '?tab=unanswered' in (app.request.requesturi) %}
             {% for question in tag.questions %}
                 {% if question.answers.count == 0 %}
                     <div class="container">
                     <div class="row justify-content-center" >
-                        <div class="col-lg-1" style=" margin-right: 20px;
-    margin-left: 85px;
-    padding-right: 70px;">
+                        <div class="col-lg-1" style=" margin-right: 20px; margin-left: 85px; padding-right: 70px;">
                             <div class="status" style="margin-right: 30px">
                                 <strong>{{ question.answers.count }}</strong>
                                 <p><small>Answers</small></p>
@@ -117,21 +107,22 @@
                                 {{ question.title }}</a>
                                 <div style="color: #333333;     text-align: justify; width: 75%;">
                             <p>{{ question.content|u.truncate(200, '...')|raw }}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    </div>
                         <div class="col-lg-3 m-4">
                             <p class="text-muted" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
                                     <span class="text-info"> {{ question.user.username }}</span></small></p>
                         </div>
-                    </div></div>
+                    </div>
+                </div>
                 {% endif %}
             {% endfor %}
 
         {% elseif '?tab=active' in (app.request.requesturi) %}
             {% for question in tag.questions %}
                 {% if not question.validated(question.answers) %}
-                    <div class="container">
+                <div class="container">
                     <div class="row justify-content-center" >
                         <div class="col-lg-1" style=" margin-right: 20px;
     margin-left: 85px;
@@ -139,13 +130,13 @@
                             <div class="status" style="margin-right: 30px">
                                     <strong>{{ question.answers.count }}</strong>
                                     <p><small>Answers</small></p>
-                                </div>
                             </div>
+                        </div>
                     <div class="col-question col-lg-8" >
-                    <div class="">
-                                <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
-                                    {{ question.title }}</a>
-                        <div style="color: #333333;     text-align: justify; width: 75%;">
+                        <div class="">
+                            <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
+                                {{ question.title }}</a>
+                            <div style="color: #333333;     text-align: justify; width: 75%;">
                                 <p>{{ question.content|u.truncate(200, '...')|raw }}</p>
                             </div>
                         </div>
@@ -154,43 +145,38 @@
                             <p class="text-muted" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
                                     <span class="text-info"> {{ question.user.username }}</span></small></p>
                         </div>
-                    </div> </div>
+                    </div>
+                </div>
                 {% endif %}
             {% endfor %}
-
     {% else %}
-
-                {% for question in tag.questions %}
-                    <div class="container">
-                        <div class="row justify-content-center" >
-                            <div class="col-lg-1" style=" margin-right: 20px;
-    margin-left: 85px;
-    padding-right: 70px;">
-                                <div class="status" style="margin-right: 30px">
-                                <strong>{{ question.answers.count }}</strong>
-                                <p><small>Answers</small></p>
-                        </div>
-                            </div>
-                        <div class="col-question col-lg-8" >
-                            <div class="">
-                            <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
-                                {{ question.title }}</a>
-                            <div style="font-size: 20px; color: #333333;     text-align: justify; width: 75%;">
-                            <p>{{ question.content|u.truncate(100, '...')|raw }}</p>
-                            </div>
+        {% for question in tag.questions %}
+        <div class="container">
+            <div class="row justify-content-center" >
+                <div class="col-lg-1" style=" margin-right: 20px;
+margin-left: 85px;
+padding-right: 70px;">
+                    <div class="status" style="margin-right: 30px">
+                    <strong>{{ question.answers.count }}</strong>
+                    <p><small>Answers</small></p>
                     </div>
-                                </div>
-
-                    <div class="col-lg-3 m-4">
-                        <p class="text-muted" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                                <span class="text-info"> {{ question.user.username }}</span></small></p>
+                </div>
+                <div class="col-question col-lg-8" >
+                    <div class="">
+                        <a href="{{ path('question_show', {slug: question.slug}) }}" style="text-decoration: none; color: #ff6c71; font-size: 20px; font-weight: bold; text-align: center; text-shadow: 2px 1px 3px #d05e62;">
+                            {{ question.title }}</a>
+                        <p>{{ question.content|u.truncate(100, '...')|raw }}</p>
                     </div>
-                    </div></div>
+                </div>
+                <div class="col-lg-3 m-4">
+                    <p class="text-muted" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                            <span class="text-info"> {{ question.user.username }}</span></small></p>
+                </div>
+            </div>
+        </div>
             {% else %}
             <p>No Answer</p>
             {% endfor %}
         </div>
-
-
         {% endif %}
 {% endblock %}
