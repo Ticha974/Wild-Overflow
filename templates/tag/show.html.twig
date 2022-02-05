@@ -4,12 +4,28 @@
 
 {% block body %}
 <div>
+<div class="container-bc">
     <ul class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/question">Question</a></li>
-        <li>Tag</li>
+        <a href="/">
+            <li class="breadcrumb__item breadcrumb__item-firstChild">
+        <span class="breadcrumb__inner">
+            <span class="breadcrumb__title">Home</span>
+        </span>
+            </li>
+        </a>
+        <a href="/question">
+            <li class="breadcrumb__item breadcrumb__item-firstChild">
+        <span class="breadcrumb__inner">
+            <span class="breadcrumb__title">All questions</span>
+        </span>
+            </li>
+        </a>
+        <li class="breadcrumb__item"style="background-color: #f5c2c7">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title" >{{ tag.name }}</span>
+        </span>
+        </li>
     </ul>
-</div>
 <div class="container mt-3">
     <div class="row justify-content-between">
         <div class="col-6">
@@ -156,4 +172,6 @@
             <p>No Answer</p>
         {% endfor %}
     {% endif %}
+</div>
+</div>
 {% endblock %}

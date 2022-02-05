@@ -85,19 +85,28 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        <ul class="breadcrumb">
-            <li><a href="/">
-                    Home</a>
+<div class="container-bc">
+    <ul class="breadcrumb">
+        <a href="/">
+            <li class="breadcrumb__item breadcrumb__item-firstChild">
+    <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">Home</span>
+    </span>
             </li>
-            <li><a href="/question">
-                    Question</a>
+        </a><a href="/question">
+            <li class="breadcrumb__item breadcrumb__item-firstChild">
+    <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">All questions</span>
+    </span>
             </li>
-            <li>
-               Answer
-            </li>
-        </ul>
-    </div>
+        </a>
+        <li class="breadcrumb__item"style="background-color: #f5c2c7">
+    <span class="breadcrumb__inner">
+    <span class="breadcrumb__title" >{{ question.title }}</span>
+    </span>
+        </li>
+    </ul>
+</div>
     <h1 class="header text-center" style="font-size: 30px; max-width: 850px;">{{ question.title }}</h1>
     <p class="text-muted" style="width: 150px; margin-left: 500px;"><small style="display: flex; justify-content: space-between; width: 200px;">Asked {{ question.createdAt|date("m/d/Y") }}<span class="text-info"> {{ question.user.username }}</span></small></p>
     <div class="container">

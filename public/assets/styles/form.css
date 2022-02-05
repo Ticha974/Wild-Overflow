@@ -59,7 +59,6 @@ button.btn {
 .invalid-feedback {
     color: red;
     font-weight: bold;
-    text-shadow: 2px 2px 2px black;
 }
 
 .flash-info {

@@ -3,12 +3,23 @@
 {% block title %}My Questions{% endblock %}
 
 {% block body %}
-<div>
+<div class="container-bc">
     <ul class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li>MyQuestion</li>
+        <a href="/">
+            <li class="breadcrumb__item breadcrumb__item-firstChild">
+        <span class="breadcrumb__inner">
+            <span class="breadcrumb__title">Home</span>
+        </span>
+            </li>
+        </a>
+        <li class="breadcrumb__item"style="background-color: #f5c2c7">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title" >My Question</span>
+        </span>
+        </li>
     </ul>
 </div>
+
 <div class="container mt-3">
     <div class="row justify-content-between">
         <div class="col-lg-3">
@@ -38,11 +49,13 @@
                 <div class="col-sm align-self-center">
                     <p class="tag ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
             {% endfor %}
-            <p class="text-muted ms-5" style="width: 150px">
+            <div class="col-lg-3 m-4">
+            <p class="text-muted m-4" style="width: 150px">
                 <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
                 <span class="text-info"> {{ question.user.username }}</span>
                 </small>
             </p>
+            </div>
             </div>
         </div>
     </div>
@@ -51,7 +64,4 @@
             <p>No questions yet.</p>
         {% endfor %}
 </div>
-{% endblock %}
-{% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 {% endblock %}
