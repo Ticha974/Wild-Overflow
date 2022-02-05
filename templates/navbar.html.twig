@@ -1,7 +1,7 @@
 <img class="logo" src="/images/logoWildO.png" alt="logo">
 <div class="navigation">
-    <ul>
-        <li class="list active">
+    <ul class="nav">
+        <li class="list {% if app.request.get('_route') == 'home' %}active{% endif %}">
             <a href="/">
             <span class="icon">
               <ion-icon name="home-outline"></ion-icon>
@@ -9,7 +9,7 @@
                 <span class="text">Home</span>
             </a>
         </li>
-        <li class="list">
+        <li class="list {% if (app.request.get('_route') == 'question_index') or (app.request.get('_route') == 'tag_question') %}active{% endif %}">
             <a href="/question">
             <span class="icon">
               <ion-icon name="help-outline"></ion-icon>
@@ -25,7 +25,7 @@
                 <span class="text">About</span>
             </a>
         </li>
-        <li class="list">
+        <li class="list {% if app.request.get('_route') == 'contact' %}active{% endif %}">
             <a href="/contact">
             <span class="icon">
               <ion-icon name="mail-outline"></ion-icon>
@@ -33,38 +33,32 @@
                 <span class="text">Contact us</span>
             </a>
         </li>
-        <li class="list">
-            <a href="#">
-            <span class="icon">
-              <ion-icon name="person-outline"></ion-icon>
-            </span>
+        <li class="nav-item dropdown list" >
+            <a class="nav-link " data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="icon">
+                    <ion-icon name="person-outline"></ion-icon>
+                </span>
                 <span class="text">Profile</span>
             </a>
-        </li>
-        {% if app.user %}
-            <a href="{{ path('app_logout', {'token':csrf_token('logout')}) }}">Logout</a>
+
+            {% if app.user %}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ path('myquestion_index') }}">My Questions</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('app_logout', {'token':csrf_token('logout')}) }}">Logout</a>
+                </div>
             {% else %}
-                <a href="{{ path('app_login') }}">Login</a>
-        {% endif %}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ path('app_login') }}">Login</a>
+                    <a class="dropdown-item" href="{{ path('app_register') }}">Register</a>
+                </div>
+            {% endif %}
+        </li>
         <div class="indicator"></div>
 
     </ul>
 </div>
 {% block javascripts %}
-    <script> const list = document.querySelectorAll(".list");
-            function activeLink()
-            {
-            list.forEach(
-            (item) =>
-        item.classList.remove('active')
-        );
-        this.classList.add('active');
-        }
-        list.forEach(
-            (item) =>
-                item.addEventListener('click', activeLink)
-        );
-    </script>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 {% endblock %}

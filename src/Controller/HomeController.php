@@ -15,22 +15,12 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-
-        return $this->render(
-            'home/index.html.twig'
-        );
-    }
-    /**
-     * @Route("/home", name="tags")
-     */
-    public function show(): Response
-    {
-        $questions = $this->getDoctrine()
+        $tag = $this->getDoctrine()
             ->getRepository(tag::class)
             ->findAll();
         return $this->render(
             'home/home.html.twig',
-            ['tag' => $questions]
+            ['tag' => $tag]
         );
     }
 }
