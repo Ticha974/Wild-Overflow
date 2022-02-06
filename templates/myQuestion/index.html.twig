@@ -33,14 +33,14 @@
         <div class="container">
             <div class="row justify-content-center" >
                 <div class="col-lg-1" style=" margin-right: 20px; margin-left: 30px; padding-right: 70px;">
-                    <div class="status" style="margin-right: 30px">
+                    <div class="status">
                             <strong>{{ question.answers.count }}</strong>
                             <p><small>Answers</small></p>
                     </div>
                 </div>
             <div class="col-question col-lg-8" >
                 <div>
-                    <a href="{{ path('question_show', {slug: question.slug}) }}" style="text-decoration: none; color: #ff6c71; font-size: 20px; font-weight: bold; text-align: center; text-shadow: 2px 1px 3px #d05e62;">
+                    <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                         {{ question.title }}</a>
                     <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
                 </div>

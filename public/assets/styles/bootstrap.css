@@ -3746,7 +3746,7 @@ textarea.form-control-lg {
   position: absolute;
   inset: 0 auto auto 0;
   margin: 0;
-  transform: translate(-18px, 77px) !important;
+  transform: translate(30px, 77px) !important;
 }
 
 .dropdown-header {
@@ -6803,7 +6803,7 @@ textarea.form-control-lg {
 }
 
 .border {
-  border: 1px solid #dee2e6 !important;
+  border: 1px solid #b8b9bb !important;
 }
 
 .border-0 {

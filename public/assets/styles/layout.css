@@ -8,7 +8,7 @@ html {
     font-family: 'Poppins', sans-serif;
 }
 :root {
-    --clr: #ffffff;
+    --clr: rgb(234, 234, 234);
 }
 body {
     display: flex;
@@ -366,6 +366,14 @@ a {
     margin-top: 33px;
 }
 
-/** breadcrumb */
+a.title-question {
+    text-decoration: none;
+    color: #ff6c71;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
 
-
+.status {
+    margin-right: 30px;
+}
