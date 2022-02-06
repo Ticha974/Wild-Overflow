@@ -3,39 +3,45 @@
 
 
 {% block body %}
-    <div>
-        <ul class="breadcrumb">
-            <li><a href="/">
-                    Home</a>
-            </li>
-            <li>
-                Question
-            </li>
+<div class="container-bc">
+    <ul class="breadcrumb">
+        <a href="/">
+        <li class="breadcrumb__item breadcrumb__item-firstChild">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title">Home</span>
+            </span>
+        </li>
+        </a>
+        <li class="breadcrumb__item"style="background-color: #f5c2c7">
+            <span class="breadcrumb__inner">
+            <span class="breadcrumb__title" >Question</span>
+            </span>
+        </li>
+    </ul>
+</div>
 
-        </ul>
-    </div>
-    <div class="container mt-3">
-        <div class="row justify-content-between">
-            <div class="col-lg-6">
-                <h3 class="header">All Questions</h3>
-            </div>
-            <div class="col-3.5 pt-4">
-                <button class="btn ask" type="button" ><a id="ask" href="{{ path('question_new') }}">Ask question</a></button>
-            </div>
+<div class="container mt-3">
+    <div class="row justify-content-between">
+        <div class="col-lg-6">
+            <h3 class="header">All Questions</h3>
         </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <h4> {{ questions|length }} Question(s)</h4>
-                </div>
-                <div class="col-5">
-                    <ul class="list-inline">
-                        <a href="?tab=newest" class="filter"><li class="list-inline-item border {% if '?tab=newest' in (app.request.requesturi) %}filterSelected{% endif %}" >Newest</li></a>
-                        <a href="?tab=active" class="filter"><li class="list-inline-item border {% if '?tab=active' in (app.request.requesturi) %}filterSelected{% endif %}">Active</li></a>
-                        <a href="?tab=unanswered" class="filter "><li class="list-inline-item border {% if '?tab=unanswered' in (app.request.requesturi) %}filterSelected{% endif %}">Unanswered</li></a>
-                    </ul>
-                </div>
-            </div>
+        <div class="col-3.5 pt-4">
+            <button class="btn ask" type="button" ><a id="ask" href="{{ path('question_new') }}">Ask question</a></button>
+        </div>
     </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <h6 class="mb-0"> {{ questions|length }} Question(s)</h6>
+        </div>
+        <div class="col-5">
+            <ul class="list-inline">
+                <a href="?tab=newest" class="filter"><li class="list-inline-item border {% if '?tab=newest' in (app.request.requesturi) %}filterSelected{% endif %}" >Newest</li></a>
+                <a href="?tab=active" class="filter"><li class="list-inline-item border {% if '?tab=active' in (app.request.requesturi) %}filterSelected{% endif %}">Active</li></a>
+                <a href="?tab=unanswered" class="filter "><li class="list-inline-item border {% if '?tab=unanswered' in (app.request.requesturi) %}filterSelected{% endif %}">Unanswered</li></a>
+            </ul>
+        </div>
+    </div>
+</div>
 
     {% if '?tab=newest' in (app.request.requesturi) %}
         {% for question in questions|sort|reverse %}
@@ -58,13 +64,17 @@
                     <div class="col-sm align-self-center">
                         <p class="tag  ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
                         {% endfor %}
-                        <p class="text-muted ms-5" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                                <span class="text-info"> {{ question.user.username }}</span></small></p>
+                        <div class="col-lg-3 m-4">
+                        <p class="text-muted m-4" style="width: 150px">
+                            <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                            <span class="text-info"> {{ question.user.username }}</span>
+                            </small>
+                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-
+        </div>
         {% endfor %}
     {% elseif '?tab=unanswered' in (app.request.requesturi) %}
         {% for question in questions %}
@@ -88,12 +98,17 @@
                     <div class="col-sm align-self-center">
                         <p class="tag  ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
                         {% endfor %}
-                        <p class="text-muted ms-5" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                                <span class="text-info"> {{ question.user.username }}</span></small></p>
+                        <div class="col-lg-3 m-4">
+                        <p class="text-muted m-4" style="width: 150px">
+                            <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                            <span class="text-info"> {{ question.user.username }}</span>
+                            </small>
+                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
         {% endif %}
         {% endfor %}
 
@@ -119,12 +134,17 @@
                     <div class="col-sm align-self-center">
                         <p class="tag  ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
                         {% endfor %}
-                        <p class="text-muted ms-5" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                                <span class="text-info"> {{ question.user.username }}</span></small></p>
+                        <div class="col-lg-3 m-4">
+                        <p class="text-muted m-4" style="width: 150px">
+                            <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                            <span class="text-info"> {{ question.user.username }}</span>
+                            </small>
+                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
         {% endif %}
         {% endfor %}
     {% else %}
@@ -148,15 +168,19 @@
                     <div class="col-sm align-self-center">
                         <p class="tag  ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
                         {% endfor %}
-                        <p class="text-muted ms-5" style="width: 150px"><small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                                <span class="text-info"> {{ question.user.username }}</span></small></p>
+                        <div class="col-lg-3 m-4">
+                        <p class="text-muted m-4" style="width: 150px">
+                            <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                            <span class="text-info"> {{ question.user.username }}</span>
+                            </small>
+                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
             {% else %}
                 <p>No Questions yet</p>
         {% endfor %}
     {% endif %}
-
 {% endblock %}

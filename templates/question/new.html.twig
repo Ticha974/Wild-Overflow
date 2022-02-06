@@ -9,21 +9,30 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        <ul class="breadcrumb">
-            <li><a href="/">
-                   Home</a>
+<div class="container-bc">
+    <ul class="breadcrumb">
+        <a href="/">
+            <li class="breadcrumb__item breadcrumb__item-firstChild">
+        <span class="breadcrumb__inner">
+            <span class="breadcrumb__title">Home</span>
+        </span>
             </li>
-            <li><a href="/question">
-                    Question</a>
+        </a>
+        <a href="/question">
+            <li class="breadcrumb__item breadcrumb__item-firstChild">
+        <span class="breadcrumb__inner">
+            <span class="breadcrumb__title">All questions</span>
+        </span>
             </li>
-            <li>
-                Ask-Question
-            </li>
-        </ul>
-    </div>
-    <div>
-    </div>
+        </a>
+        <li class="breadcrumb__item"style="background-color: #f5c2c7">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title" >Ask question</span>
+        </span>
+        </li>
+    </ul>
+</div>
+
 {% if app.user %}
     <h1>Ask your question</h1>
     <br>

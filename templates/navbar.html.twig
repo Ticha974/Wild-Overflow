@@ -9,7 +9,7 @@
                 <span class="text">Home</span>
             </a>
         </li>
-        <li class="list {% if (app.request.get('_route') == 'question_index') or (app.request.get('_route') == 'tag_question') %}active{% endif %}">
+        <li class="list {% if (app.request.get('_route') == 'question_index') or (app.request.get('_route') == 'tag_question') or (app.request.get('_route') == 'question_show') %}active{% endif %}">
             <a href="/question">
             <span class="icon">
               <ion-icon name="help-outline"></ion-icon>
@@ -33,8 +33,8 @@
                 <span class="text">Contact us</span>
             </a>
         </li>
-        <li class="nav-item dropdown list" >
-            <a class="nav-link " data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown list {% if (app.request.get('_route') == 'question_edit') or (app.request.get('_route') == 'myquestion_index') or (app.request.get('_route') == 'app_login') or (app.request.get('_route') == 'app_register') or (app.request.get('_route') == 'question_new') %}active{% endif %}" >
+            <a data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="icon">
                     <ion-icon name="person-outline"></ion-icon>
                 </span>
@@ -54,6 +54,7 @@
                 </div>
             {% endif %}
         </li>
+        <li>{% if app.user %}<span style="color: #fff;">Hello {{ app.user.username }}</span>{% endif %}</li>
         <div class="indicator"></div>
 
     </ul>
