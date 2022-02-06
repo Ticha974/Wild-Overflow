@@ -79,11 +79,6 @@
 </style> #}
 {% endblock %}
 
-{% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <link href="/assets/styles/crumb.css" rel="stylesheet">
-{% endblock %}
-
 {% block body %}
 <div class="container-bc">
     <ul class="breadcrumb">
@@ -102,7 +97,7 @@
         </a>
         <li class="breadcrumb__item"style="background-color: #f5c2c7">
     <span class="breadcrumb__inner">
-    <span class="breadcrumb__title" >{{ question.title }}</span>
+    <span class="breadcrumb__title" >{{ question.title|striptags|u.truncate(25, '...') }}</span>
     </span>
         </li>
     </ul>
@@ -125,11 +120,13 @@
                 <a href="{{ path('question_edit', {'id': question.id}) }}" class="btn edit">Edit question</a>
             {% endif %}
             </div>
+        {% if (question.answers.count) > 0 %}
         <div class="row justify-content-center" >
             <div class="col-question col-lg-8" STYLE="border-color: #484848; margin-bottom: 30px">
                 <h3 class="header">{{ (question.answers.count) }} Answer(s)</h3>
             </div>
         </div>
+        {% endif %}
         <div class="row justify-content-center" >
             <div class="col-question col-lg-8" STYLE="border-color: #484848; background-color: #777676; flex-direction: column; margin-bottom: 30px !important;">
                 {% for answer in question.answers %}

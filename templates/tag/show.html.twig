@@ -54,14 +54,14 @@
             <div class="container">
                 <div class="row justify-content-center" >
                     <div class="col-lg-1" style=" margin-right: 20px; margin-left: 85px;padding-right: 70px;">
-                        <div class="status" style="margin-right: 30px">
+                        <div class="status">
                             <strong>{{ question.answers.count }}</strong>
                             <p><small>Answers</small></p>
                         </div>
                     </div>
                     <div class="col-question col-lg-8" >
                         <div>
-                            <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
+                            <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                 {{ question.title }}</a>
                             <div style="color: #333333; text-align: justify; width: 75%;">
                                 <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
@@ -84,14 +84,14 @@
                 <div class="container">
                     <div class="row justify-content-center" >
                         <div class="col-lg-1" style=" margin-right: 20px; margin-left: 85px; padding-right: 70px;">
-                            <div class="status" style="margin-right: 30px">
+                            <div class="status">
                                 <strong>{{ question.answers.count }}</strong>
                                 <p><small>Answers</small></p>
                             </div>
                         </div>
                         <div class="col-question col-lg-7" >
                             <div>
-                                <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
+                                <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                 {{ question.title }}</a>
                                 <div style="color: #333333; text-align: justify; width: 75%;">
                                     <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
@@ -115,14 +115,14 @@
                 <div class="container">
                     <div class="row justify-content-center" >
                         <div class="col-lg-1" style=" margin-right: 20px;margin-left: 85px;padding-right: 70px;">
-                            <div class="status" style="margin-right: 30px">
+                            <div class="status">
                                     <strong>{{ question.answers.count }}</strong>
                                     <p><small>Answers</small></p>
                             </div>
                         </div>
                     <div class="col-question col-lg-8" >
                         <div>
-                            <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
+                            <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                     {{ question.title }}</a>
                             <div style="color: #333333;     text-align: justify; width: 75%;">
                                 <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
@@ -145,14 +145,14 @@
             <div class="container">
                 <div class="row justify-content-center" >
                     <div class="col-lg-1" style=" margin-right: 20px;margin-left: 85px;padding-right: 70px;">
-                        <div class="status" style="margin-right: 30px">
+                        <div class="status">
                             <strong>{{ question.answers.count }}</strong>
                             <p><small>Answers</small></p>
                         </div>
                     </div>
                     <div class="col-question col-lg-8" >
                         <div>
-                            <a href="{{ path('question_show', {slug: question.slug}) }}" class="text-primary" style="text-decoration: none">
+                            <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                 {{ question.title }}</a>
                             <div style="font-size: 20px; color: #333333; text-align: justify; width: 75%;">
                                 <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
