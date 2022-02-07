@@ -26,7 +26,7 @@
             <h3 class="header">All Questions</h3>
         </div>
         <div class="col-3.5 pt-4">
-            <button class="btn ask" type="button" ><a id="ask" href="{{ path('question_new') }}">Ask question</a></button>
+            <a id="ask" href="{{ path('question_new') }}"><button class="btn ask" type="button" >Ask question</button></a>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -35,9 +35,9 @@
         </div>
         <div class="col-5">
             <ul class="list-inline">
-                <a href="?tab=newest" class="filter"><li class="list-inline-item border {% if '?tab=newest' in (app.request.requesturi) %}filterSelected{% endif %}" >Newest</li></a>
-                <a href="?tab=active" class="filter"><li class="list-inline-item border {% if '?tab=active' in (app.request.requesturi) %}filterSelected{% endif %}">Active</li></a>
-                <a href="?tab=unanswered" class="filter "><li class="list-inline-item border {% if '?tab=unanswered' in (app.request.requesturi) %}filterSelected{% endif %}">Unanswered</li></a>
+                <a href="?tab=newest" class="filter"><li class="list-inline-item filter border {% if '?tab=newest' in (app.request.requesturi) %}filterSelected{% endif %}" >Newest</li></a>
+                <a href="?tab=active" class="filter"><li class="list-inline-item filter border {% if '?tab=active' in (app.request.requesturi) %}filterSelected{% endif %}">Active</li></a>
+                <a href="?tab=unanswered" class="filter "><li class="list-inline-item filter border {% if '?tab=unanswered' in (app.request.requesturi) %}filterSelected{% endif %}">Unanswered</li></a>
             </ul>
         </div>
     </div>
@@ -183,4 +183,28 @@
                 <p>No Questions yet</p>
         {% endfor %}
     {% endif %}
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    //Get the button:
+    mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+    } else {
+    mybutton.style.display = "none";
+    }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+    </script>
 {% endblock %}

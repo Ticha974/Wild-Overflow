@@ -41,9 +41,9 @@
         </div>
         <div class="col-5">
             <ul class="list-inline">
-                <a href="?tab=newest" class="filter"><li class="list-inline-item border {% if '?tab=newest' in (app.request.requesturi) %}filterSelected{% endif %}" >Newest</li></a>
-                <a href="?tab=active" class="filter"><li class="list-inline-item border {% if '?tab=active' in (app.request.requesturi) %}filterSelected{% endif %}">Active</li></a>
-                <a href="?tab=unanswered" class="filter"><li class="list-inline-item border {% if '?tab=unanswered' in (app.request.requesturi) %}filterSelected{% endif %}">Unanswered</li></a>
+                <a href="?tab=newest" class="filter"><li class="list-inline-item filter border {% if '?tab=newest' in (app.request.requesturi) %}filterSelected{% endif %}" >Newest</li></a>
+                <a href="?tab=active" class="filter"><li class="list-inline-item filter border {% if '?tab=active' in (app.request.requesturi) %}filterSelected{% endif %}">Active</li></a>
+                <a href="?tab=unanswered" class="filter"><li class="list-inline-item filter border {% if '?tab=unanswered' in (app.request.requesturi) %}filterSelected{% endif %}">Unanswered</li></a>
             </ul>
         </div>
     </div>
@@ -63,7 +63,7 @@
                         <div>
                             <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                 {{ question.title }}</a>
-                            <div style="color: #333333; text-align: justify; width: 75%;">
+                            <div class="col-8">
                                 <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             <div>
                                 <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                 {{ question.title }}</a>
-                                <div style="color: #333333; text-align: justify; width: 75%;">
+                                <div class="col-8">
                                     <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                         <div>
                             <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                     {{ question.title }}</a>
-                            <div style="color: #333333;     text-align: justify; width: 75%;">
+                            <div class="col-8">
                                 <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                         <div>
                             <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                 {{ question.title }}</a>
-                            <div style="font-size: 20px; color: #333333; text-align: justify; width: 75%;">
+                            <div class="col-8">
                                 <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
                             </div>
                         </div>
@@ -169,7 +169,7 @@
                 </div>
             </div>
         {% else %}
-            <p>No Answer</p>
+            <p>No Question yet</p>
         {% endfor %}
     {% endif %}
 </div>

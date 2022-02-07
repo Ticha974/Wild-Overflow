@@ -26,7 +26,7 @@
             <h3 class="header text-center">Your Questions</h3>
         </div>
         <div class="col-3.5 pt-4">
-        <button class="btn ask" type="button" ><a id="ask" href="{{ path('question_new') }}">Ask question</a></button>
+            <a id="ask" href="{{ path('question_new') }}"><button class="btn ask" type="button" >Ask question</button></a>
         </div>
     </div>
     {% for question in questions %}
