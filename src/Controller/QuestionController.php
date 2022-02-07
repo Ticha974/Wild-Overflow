@@ -6,12 +6,13 @@ use App\Entity\Answer;
 use App\Entity\Question;
 use App\Form\AnswerType;
 use App\Form\QuestionType;
+use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\String\Slugger\SluggerInterface;
+use App\Service\Slugify;
 
 /**
  * @Route("/question", name="question_")
@@ -51,9 +52,16 @@ class QuestionController extends AbstractController
 
     /**
      * @Route("/ask-question", name="new")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param Slugify $slugger
+     * @return Response
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
-    {
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        Slugify $slugger
+    ): Response {
         $question = new Question();
         if ($this->getUser()) {
             $question = new Question();
@@ -62,7 +70,7 @@ class QuestionController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $question->setUser($this->getUser());
-                $slug = $slugger->slug($question->getTitle());
+                $slug = $slugger->findUniqueSlug($question);
                 $question->setSlug($slug);
                 $entityManager->persist($question);
                 $entityManager->flush();
@@ -102,15 +110,15 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name= "edit", methods={"GET", "POST"})
+     * @Route("/{slug}/edit", name= "edit", methods={"GET", "POST"})
      */
 
     public function edit(
         Request $request,
         Question $question,
-        EntityManagerInterface $entityManager,
-        SluggerInterface $slugger
+        EntityManagerInterface $entityManager
     ): Response {
+
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 

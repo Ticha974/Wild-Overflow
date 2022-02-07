@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        .about{
+            margin-top:10px;
+            width: 900px;
+        }
+        .contenant{
+            position: relative;
+            text-align: center;
+        }
+        .click{
+            position: absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .click:hover{
+            color: #ff6c71;;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <h2 class="text-center">You’ve got questions, we’ve got answers.</h2>
+        </div>
+
+        <div class="row mt-4">
+            <h4>About Wild Overflow</h4>
+        </div>
+        <div class="row about">
+            <p>Wild Overflow is a platform for  wilders asking questions and other members sharing their knowledge.
+                If you have a query ask it here (anything related to Technology).
+            </p>
+        </div>
+
+        <div class="row mt-4">
+            <h4>Try It Yourself its easy to use</h4>
+        </div>
+        <div class="row">
+            <!--<a data-fancybox href="images/demoWO.webm"></a>-->
+            <p>Wild Overflow team has focus on simplicity and easy to find answers to your technical questions.</p>
+            <!--<iframe src="images/demoWO.webm" width="900px" height="400px"></iframe>-->
+        </div>
+        <div class="row">
+            <a href="images/demoWO.webm" data-fancybox="preview" data-width="1500" data-height="1000">
+                <div class="contenant">
+                    <img src="{{ asset('images/home.png') }}" width="400" height="200" />
+                    <div class="click">Click here to watch video!</div>
+                </div>
+
+            </a>
+        </div>
+
+
+        <div class="row mt-4">
+            <h4>Meet our Team</h4>
+        </div>
+        <div class="row justify-content-center">
+           <div class="col-md ">
+                <img src="images/kiran.jpg" height="250px" style="border-radius: 125px">
+               <h5 style="padding: 10px 0 0 64px">Kiran THORAT</h5>
+               <p style="padding-left: 20px">Web Developer- PHP/Symfony</p>
+            </div>
+            <div class="col-md ">
+                <img src="images/ticha.png" height="250px" style="border-radius: 125px">
+                <h5 style="padding: 10px 0 0 58px">Natacha CREPU</h5>
+                <p style="padding-left: 20px">Web Developer- PHP/Symfony</p>
+            </div>
+            <div class="col-md">
+                <img src="images/juili.png" height="250px" style="border-radius: 125px">
+                <h5 style="padding: 10px 0 0 70px">Juili CHURI</h5>
+                <p style="padding-left: 20px">Web Developer- PHP/Symfony</p>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

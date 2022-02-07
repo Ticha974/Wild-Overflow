@@ -117,7 +117,7 @@
                     <p class="content-question"> <style> a { text-decoration: none; color: #ff6c71;}</style>{{ question.content|raw }}</p>
                 </div>
             {% if app.user and app.user.id == question.user.id %}
-                <a href="{{ path('question_edit', {'id': question.id}) }}" class="btn edit">Edit question</a>
+                <a href="{{ path('question_edit', {'slug': question.slug}) }}" class="btn edit">Edit question</a>
             {% endif %}
             </div>
         {% if (question.answers.count) > 0 %}
