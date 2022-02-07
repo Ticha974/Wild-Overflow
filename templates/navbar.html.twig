@@ -17,8 +17,8 @@
                 <span class="text">Questions</span>
             </a>
         </li>
-        <li class="list">
-            <a href="#">
+        <li class="list {% if app.request.get('_route') == 'about' %}active{% endif %}">
+            <a href="/about">
             <span class="icon">
               <ion-icon name="information-outline"></ion-icon>
             </span>
