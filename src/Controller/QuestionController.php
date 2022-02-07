@@ -68,7 +68,7 @@ class QuestionController extends AbstractController
                 $entityManager->flush();
 
                 $this->addFlash('success', 'Your question has been submitted');
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('question_new');
             }
             return $this->render(
                 'question/new.html.twig',
@@ -117,6 +117,7 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'Your question has been successfully edited');
             return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -124,18 +124,13 @@ p#text, .content-question {
     width: 700px;
 }
 
-.list-inline-item:hover {
-    font-weight: bold;
+.list-inline-item.filter:hover {
     background-color: #484848;
-
+    color: #FFFFFF;
 }
 
 .filter {
     color: #484848;
-}
-
-.filter:hover {
-    color: #FFFFFF;
 }
 
 #ask {
@@ -148,6 +143,7 @@ p#text, .content-question {
     border-left-color: #9d4447;
     border-right-color: #9d4447;
     border-top-color: #9d4447;
+    color: #fff;
 }
 
 .btn.ask:hover {
@@ -204,4 +200,24 @@ p#text, .content-question {
 
 .filterSelected {
     background-color: lightgray;
+}
+
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 30px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #5e5e5e; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
 }
