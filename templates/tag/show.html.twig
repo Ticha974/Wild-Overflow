@@ -84,8 +84,8 @@
         {% for question in tag.questions %}
             {% if question.answers.count == 0 %}
                 <div class="container">
-                    <div class="row justify-content-center" >
-                        <div class="col-lg-1" style=" margin-right: 20px; margin-left: 85px; padding-right: 70px;">
+                    <div class="row justify-content-center " >
+                        <div class="col-lg-1 row-question" >
                             <div class="status">
                                 <strong>{{ question.answers.count }}</strong>
                                 <p><small>Answers</small></p>
@@ -116,7 +116,7 @@
             {% if not question.validated(question.answers) %}
                 <div class="container">
                     <div class="row justify-content-center" >
-                        <div class="col-lg-1" style=" margin-right: 20px;margin-left: 85px;padding-right: 70px;">
+                        <div class="col-lg-1 row-question" >
                             <div class="status">
                                     <strong>{{ question.answers.count }}</strong>
                                     <p><small>Answers</small></p>
@@ -145,8 +145,8 @@
     {% else %}
         {% for question in tag.questions %}
             <div class="container">
-                <div class="row justify-content-center" >
-                    <div class="col-lg-1" style=" margin-right: 20px;margin-left: 85px;padding-right: 70px;">
+                <div class="row justify-content-center row-question" >
+                    <div class="col-lg-1 row-question" >
                         <div class="status">
                             <strong>{{ question.answers.count }}</strong>
                             <p><small>Answers</small></p>

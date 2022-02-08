@@ -3,80 +3,6 @@
 {% block title %}Question-{{ question.id }}{% endblock %}
 
 {% block stylesheets %}
-    <style>
-        .tag span{
-        background-color: #fcabb0;
-        border: 1px solid transparent;
-        border-radius: 3px;
-        padding: 2px;
-        color: #484848;
-        }
-        .svg-icon {
-            vertical-align: bottom;
-            fill: #01a601;
-            filter: drop-shadow(3px 0 0 #484848);
-        }
-        .text-info.answer {
-            color: #ffffff !important;
-            font-weight: bold;
-            font-size: 20px;
-            text-shadow: 1px 0 0 #484848;
-        }
-
-        .btnAnswer {
-            margin-bottom: 30px;
-            font-size: large;
-            font-weight: bold;
-            color: #ff6c71;
-            border-bottom-color: #ff6c71;
-            border-left-color: #ff6c71;
-            border-right-color: #ff6c71;
-            border-top-color: #ff6c71;
-            text-decoration-color: #ff6c71;
-            width: 240px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
-    {#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
- <style>
-.answer-row {
-             border-color: #ff6c71;
-             border-radius: 5px;
-             border-style: solid;
-             padding: 22px;
-             width: 850px;
-             margin-bottom: 30px;
-             box-shadow: 6px 6px 6px #808080;
-         }
-
-    .py6 {
-        padding-top: 6px !important;
-        padding-bottom: 6px !important;
-    }
-    .mtn8 {
-        margin-top: 20px !important;
-        margin-left: 150px !important;
-    }
-    .fc-green-500{
-        color: rgb(72, 168, 104) !important
-    }
-    .ta-center {
-        text-align: center !important;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font: inherit;
-        font-size: 100%;
-        vertical-align: baseline;
-        display: block;
-    }
-    .svg-icon {
-        vertical-align: bottom;
-        fill: green;
-    }
-
-</style> #}
 {% endblock %}
 
 {% block body %}
@@ -102,8 +28,8 @@
         </li>
     </ul>
 </div>
-    <h1 class="header text-center" style="font-size: 30px; max-width: 850px;">{{ question.title }}</h1>
-    <p class="text-muted" style="width: 150px; margin-left: 500px;"><small style="display: flex; justify-content: space-between; width: 200px;">Asked {{ question.createdAt|date("m/d/Y") }}<span class="text-info"> {{ question.user.username }}</span></small></p>
+    <h1 class="header text-center question-show-title" >{{ question.title }}</h1>
+    <p class="text-muted question-show-title1" ><small class="question-show-title-small">Asked {{ question.createdAt|date("m/d/Y") }}<span class="text-info"> {{ question.user.username }}</span></small></p>
     <div class="container">
         <div class="row">
             {% for tag in question.tags %}
@@ -122,7 +48,7 @@
             </div>
         {% if (question.answers.count) > 0 %}
         <div class="row justify-content-center" >
-            <div class="col-question col-lg-8" STYLE="border-color: #484848; margin-bottom: 30px">
+            <div class="col-question col-lg-8 question-show-answer-count" >
                 <h3 class="header">{{ (question.answers.count) }} Answer(s)</h3>
             </div>
         </div>
