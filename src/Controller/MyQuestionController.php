@@ -22,7 +22,7 @@ class MyQuestionController extends AbstractController
     {
         $user = $this->getUser();
         $questions = $this->getDoctrine()->getRepository(Question::class)
-            ->findBy(['user' => $user]);
+            ->findBy(['user' => $user], ['createdAt' => 'DESC']);
 
         return $this->render(
             'myQuestion/index.html.twig',
