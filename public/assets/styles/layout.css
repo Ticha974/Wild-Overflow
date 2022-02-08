@@ -80,7 +80,7 @@ body {
 .indicator {
     position: absolute;
     top: -60%;
-    right: 86%;
+    right: 87%;
     width: 70px;
     height: 70px;
     background: #ff6c71;
@@ -115,16 +115,16 @@ body {
     transform: translateX(calc(35px * 0));
 }
 .navigation ul li:nth-child(2).active ~ .indicator {
-    transform: translateX(calc(108px * 1));
+    transform: translateX(calc(103px * 1));
 }
 .navigation ul li:nth-child(3).active ~ .indicator {
-    transform: translateX(calc(112px * 2));
+    transform: translateX(calc(102px * 2));
 }
 .navigation ul li:nth-child(4).active ~ .indicator {
-    transform: translateX(calc(111.5px * 3));
+    transform: translateX(calc(101.5px * 3));
 }
 .navigation ul li:nth-child(5).active ~ .indicator {
-    transform: translateX(calc(112.5px * 4));
+    transform: translateX(calc(100.5px * 4));
 }
 
 .breadcrumb-bar {
