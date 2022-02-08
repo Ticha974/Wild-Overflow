@@ -6,6 +6,7 @@ use App\Entity\Answer;
 use App\Entity\Question;
 use App\Form\AnswerType;
 use App\Form\QuestionType;
+use App\Form\SearchQuestionFormType;
 use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,14 +26,22 @@ class QuestionController extends AbstractController
      */
     public function index(): Response
     {
-        $question = new Question();
         $questions = $this->getDoctrine()
             ->getRepository(Question::class)
             ->findAll();
-        return $this->render(
-            'question/index.html.twig',
-            ['questions' => $questions]
-        );
+        return $this->render('question/index.html.twig', [
+                'questions' => $questions,
+        ]);
+    }
+
+    /**
+     * @Route("/search", name="search")
+     */
+    public function searchAction(Request $request, QuestionRepository $questionRepository): Response
+    {
+        $searchTerm = $request->query->get('search-term');
+        $questions = $questionRepository->findLikeName($searchTerm);
+        return $this->render('question/search.html.twig', ['questions' => $questions]);
     }
 
     /**

@@ -48,7 +48,18 @@
         margin-right: 105px;
         box-shadow: 6px 6px 6px #808080;
     }
-
+    #search_question_form label
+    {
+        padding-right: 10px;
+        color: #ff6c71;
+        font-size: x-large;
+        font-weight: bold;
+    }
+    #search_question_form input
+    {
+        height: 40px;
+        width: 325px;
+    }
     @keyframes mymove1 {
         from {left: 0px;}
         to {left: 400px;}}
@@ -75,26 +86,23 @@
 
 
 {% block body %}
-                    <div class="main container-fluid text-black text-center "style="  padding: 0px;width: 100%;">
+    <div class="main container-fluid text-black text-center "style="  padding: 0px;width: 100%;">
+
+        <div style="height: 20px"></div>
+        <div style="height: 30px"></div>
+        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/c25d4ed05dfd2eb88549a1a15194c756.png" alt="img" height="50px"class="delay-4" style="position: relative;animation: mymove1 5s infinite ;animation-delay: 2s; border-radius: 2px;">
+        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/08b6271d5d8d7c37a3659b6c817b6747.png" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove2 5s infinite;animation-delay: 2s; border-radius: 2px;">
+        <img src=" https://storage.googleapis.com/odyssey_production_uploads/topics/7375a708a014af8673899f62637bca2d" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove 5s infinite;animation-delay: 2s; border-radius: 2px;">
+        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/68185421c6abe3c6bc1f7bcf355266e3.png" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove5 5s infinite;animation-delay: 2s; border-radius: 2px;">
+        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/bea72cde60ee9cab781cb946a0e7936d.png" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove3 5s infinite;animation-delay: 2s; border-radius: 2px;">
+        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/88b2e3328198679570b28b49b4ce8474.png" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove4 5s infinite;animation-delay: 2s; border-radius: 2px;">
+    </div>
+    <div style="height: 20px"></div>
+    <h1 class="home"> Here, <br>you can ask your technical questions<br> and find answers to them <br>thanks to the community!  <br>Also help others solve their problems.</h1>
 
     <div style="height: 20px"></div>
-                        <div style="height: 30px"></div>
-                            <!--<img src="https://storage.googleapis.com/odyssey_production_uploads/topics/c25d4ed05dfd2eb88549a1a15194c756.png" alt="img" height="50px"class="delay-4" style="position: relative;animation: 3s ease-in 1s infinite reverse both running mymove1 ;animation-delay: 2s; border-radius: 2px;">
-                            <span class="delay-3" style="margin-top:10px;height:20px;font-size: 40px; position: relative;animation: 3s ease-in 1s infinite reverse both running mymove1 ;animation-delay: 2s; border-radius: 2px;">HTML</span>-->
-                        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/c25d4ed05dfd2eb88549a1a15194c756.png" alt="img" height="50px"class="delay-4" style="position: relative;animation: mymove1 5s infinite ;animation-delay: 2s; border-radius: 2px;">
-                        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/08b6271d5d8d7c37a3659b6c817b6747.png" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove2 5s infinite;animation-delay: 2s; border-radius: 2px;">
-                        <img src=" https://storage.googleapis.com/odyssey_production_uploads/topics/7375a708a014af8673899f62637bca2d" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove 5s infinite;animation-delay: 2s; border-radius: 2px;">
-                        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/68185421c6abe3c6bc1f7bcf355266e3.png" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove5 5s infinite;animation-delay: 2s; border-radius: 2px;">
-                        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/bea72cde60ee9cab781cb946a0e7936d.png" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove3 5s infinite;animation-delay: 2s; border-radius: 2px;">
-                        <img src="https://storage.googleapis.com/odyssey_production_uploads/topics/88b2e3328198679570b28b49b4ce8474.png" alt="img" height="50px"class="delay-3" style="position: relative;animation: mymove4 5s infinite;animation-delay: 2s; border-radius: 2px;">
-                    </div>
-                    <div style="height: 20px"></div>
-                    <h1 class="home"> Here, <br>you can ask your technical questions<br> and find answers to them <br>thanks to the community!  <br>Also help others solve their problems.</h1>
-
-                    <div style="height: 20px"></div>
 
     <a id="ask" href="{{ path('question_new') }}"><button class="btn ask" type="button" style="font-size: 30px; width: 110%; height: 60px;" >Ask your question</button></a>
-
         {% for tags in tag %}
             <div class="container-home">
          <div class="row" style=" margin: 8px; width: 375px; ">

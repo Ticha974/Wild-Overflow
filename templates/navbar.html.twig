@@ -9,7 +9,7 @@
                 <span class="text">Home</span>
             </a>
         </li>
-        <li class="list {% if (app.request.get('_route') == 'question_index') or (app.request.get('_route') == 'tag_question') or (app.request.get('_route') == 'question_show') %}active{% endif %}">
+        <li class="list {% if (app.request.get('_route') == 'question_index') or (app.request.get('_route') == 'tag_question') or (app.request.get('_route') == 'question_show') or (app.request.get('_route') == 'question_search')%}active{% endif %}">
             <a href="/question">
             <span class="icon">
               <ion-icon name="help-outline"></ion-icon>
@@ -55,7 +55,15 @@
                 </div>
             {% endif %}
         </li>
-        <li>{% if app.user %}<span style="color: #fff;">Hello {{ app.user.username }}</span>{% endif %}</li>
+        <!--<li>{% if app.user %}<span style="color: #fff;">Hello {{ app.user.username }}</span>{% endif %}</li>-->
+        <li>
+            <div class="row" style="padding-top:13px">
+            <form action="{{ path('question_search') }}" method="get">
+                <input type="search" name="search-term" id="search-term" value="" required>
+                <button type="submit"><ion-icon name="search"></ion-icon></button>
+            </form>
+            </div>
+        </li>
         <div class="indicator"></div>
 
     </ul>
