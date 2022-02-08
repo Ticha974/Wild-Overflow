@@ -25,7 +25,6 @@ class HomeController extends AbstractController
             $questions = $questionRepository->findLikeName($search);
 
             return $this->render('question/index.html.twig', ['questions' => $questions,]);
-
         } else {
             $questions = $questionRepository->findAll();
         }
