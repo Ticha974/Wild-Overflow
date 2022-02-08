@@ -29,6 +29,15 @@
             <a id="ask" href="{{ path('question_new') }}"><button class="btn ask" type="button" >Ask question</button></a>
         </div>
     </div>
+    <div class="row justify-content-center">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
     {% for question in questions %}
         <div class="container">
             <div class="row justify-content-center" >

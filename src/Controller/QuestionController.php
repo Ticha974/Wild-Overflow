@@ -126,7 +126,7 @@ class QuestionController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Your question has been successfully edited');
-            return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('myquestion_index');
         }
 
         return $this->renderForm('question/edit.html.twig', [
