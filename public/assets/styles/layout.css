@@ -377,3 +377,15 @@ a.title-question {
 .status {
     margin-right: 30px;
 }
+
+a.contact {
+    text-decoration: none;
+    color: #ff6c71;
+    font-weight: bold;
+}
+
+a.contact:hover {
+    text-decoration: none;
+    color: #e8383e;
+    font-weight: bold;
+}
