@@ -25,7 +25,6 @@ class QuestionController extends AbstractController
      */
     public function index(): Response
     {
-        $question = new Question();
         $questions = $this->getDoctrine()
             ->getRepository(Question::class)
             ->findAll();

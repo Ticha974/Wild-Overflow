@@ -19,7 +19,7 @@ class TagController extends AbstractController
     /**
      * @Route("/{slug}", name="question")
      */
-    public function show(Tag $tag): Response
+    public function show(Tag $tag, Request $request): Response
     {
         return $this->render(
             'tag/show.html.twig',
