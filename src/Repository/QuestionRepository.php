@@ -20,6 +20,17 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function findLikeName(string $name): array
+    {
+        $queryBuilder = $this->createQueryBuilder('q')
+            ->where('q.title LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->orderBy('q.title', 'ASC')
+            ->getQuery();
+
+        return $queryBuilder->getResult();
+    }
+
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */
