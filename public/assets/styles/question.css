@@ -221,3 +221,36 @@ p#text, .content-question {
 #myBtn:hover {
     background-color: #555; /* Add a dark-grey background on hover */
 }
+
+
+/* tag */
+
+.row-question{
+    margin-right: 20px;
+    margin-left: 85px;
+    padding-right: 70px;
+}
+/* login */
+
+.login-btn{
+    margin-top: 30px;
+    margin-bottom: 5px;
+    background-color: #ff6c71;
+    color: #fffbfb;
+    border-bottom-color: #9d4447;
+    border-left-color: #9d4447;
+    border-right-color: #9d4447;
+    border-top-color: #9d4447;
+}
+
+/* Registration */
+
+input#registration_form_email {
+    height: 30px;
+}
+input#registration_form_username {
+    height: 30px;
+}
+input#registration_form_plainPassword {
+    height: 30px;
+}
