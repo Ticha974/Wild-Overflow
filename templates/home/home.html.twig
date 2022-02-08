@@ -55,6 +55,11 @@
         font-size: x-large;
         font-weight: bold;
     }
+    #search_question_form input
+    {
+        height: 40px;
+        width: 325px;
+    }
     @keyframes mymove1 {
         from {left: 0px;}
         to {left: 400px;}}
@@ -97,30 +102,7 @@
 
     <div style="height: 20px"></div>
 
-    <div class="row justify-content-around">
-        <div class="col-lg-4">
-            <a id="ask" href="{{ path('question_new') }}"><button class="btn ask" type="button" style="font-size: 25px; width: 80%; height: 60px; padding-left: 10px" >Ask your question</button></a>
-        </div>
-
-        <div class="col-lg-7" style="margin-bottom: 65px">
-            {{ form_start(form) }}
-            <div class="row justify-content-center">
-                <div class="col-sm" >
-                    {{ form_widget(form) }}
-                </div>
-                <div class="col-sm">
-                    <button style="margin-top: 7px;
-    background-color: #ff6c71;
-    color: #dfdfdf;
-    border-bottom-color: #9d4447;
-    border-left-color: #9d4447;
-    border-right-color: #9d4447;
-    border-top-color: #9d4447; padding-left: 10px">Search</button>
-                </div>
-            </div>
-            {{ form_end(form) }}
-        </div>
-    </div>
+    <a id="ask" href="{{ path('question_new') }}"><button class="btn ask" type="button" style="font-size: 30px; width: 110%; height: 60px;" >Ask your question</button></a>
         {% for tags in tag %}
             <div class="container-home">
          <div class="row" style=" margin: 8px; width: 375px; ">

@@ -35,6 +35,16 @@ class QuestionController extends AbstractController
     }
 
     /**
+     * @Route("/search", name="search")
+     */
+    public function searchAction(Request $request, QuestionRepository $questionRepository): Response
+    {
+        $searchTerm = $request->query->get('search-term');
+        $questions = $questionRepository->findLikeName($searchTerm);
+        return $this->render('question/search.html.twig', ['questions' => $questions]);
+    }
+
+    /**
      * @Route("/latest", name="latest")
      */
     public function latest(): Response
