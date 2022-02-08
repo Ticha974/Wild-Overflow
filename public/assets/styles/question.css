@@ -232,7 +232,7 @@ p#text, .content-question {
 }
 /* login */
 
-.login-btn{
+.btn.login-btn{
     margin-top: 30px;
     margin-bottom: 5px;
     background-color: #ff6c71;
@@ -241,6 +241,12 @@ p#text, .content-question {
     border-left-color: #9d4447;
     border-right-color: #9d4447;
     border-top-color: #9d4447;
+}
+
+.login-row
+{
+    width: 400px;
+    text-align: center;
 }
 
 /* Registration */
@@ -253,4 +259,77 @@ input#registration_form_username {
 }
 input#registration_form_plainPassword {
     height: 30px;
+}
+
+.btn.register-btn
+{
+    margin-top: 10px;
+    background-color: #ff6c71;
+    color: #fffbfb;
+    border-bottom-color: #9d4447;
+    border-left-color: #9d4447;
+    border-right-color: #9d4447;
+    border-top-color: #9d4447;
+}
+
+.row-form.register-row {
+    width: 400px;
+    text-align: center;
+}
+
+/* Question Show */
+
+.tag span{
+    background-color: #fcabb0;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 2px;
+    color: #484848;
+}
+.svg-icon {
+    vertical-align: bottom;
+    fill: #01a601;
+    filter: drop-shadow(3px 0 0 #484848);
+}
+.text-info.answer {
+    color: #ffffff !important;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 1px 0 0 #484848;
+}
+
+.btnAnswer {
+    margin-bottom: 30px;
+    font-size: large;
+    font-weight: bold;
+    color: #ff6c71;
+    border-bottom-color: #ff6c71;
+    border-left-color: #ff6c71;
+    border-right-color: #ff6c71;
+    border-top-color: #ff6c71;
+    text-decoration-color: #ff6c71;
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.header.text-center.question-show-title
+{
+    font-size: 30px;
+    max-width: 850px;
+}
+.text-muted.question-show-title1
+{
+    width: 150px;
+    margin-left: 500px;
+}
+.question-show-title-small
+{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+.question-show-answer-count
+{
+    border-color: #484848;
+    margin-bottom: 30px
 }
