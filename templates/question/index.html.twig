@@ -49,14 +49,14 @@
         {% for question in questions|sort|reverse %}
             <div class="container">
                 <div class="row justify-content-center" >
-                    <div class="col-lg-1" style=" margin-right: 20px; margin-left: 30px; padding-right: 70px;">
+                    <div class="col-lg-1 myquestion">
                         <div class="status">
                             <strong>{{ question.answers.count }}</strong>
                             <p><small>Answers</small></p>
                         </div>
                     </div>
                     <div class="col-question col-lg-8" >
-                        <div class="">
+                        <div>
                             <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
                                 {{ question.title }}</a>
                             <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
@@ -86,7 +86,7 @@
                 {% set count = count+1 %}
             <div class="container">
                 <div class="row justify-content-center" >
-                    <div class="col-lg-1" style=" margin-right: 20px; margin-left: 30px; padding-right: 70px;">
+                    <div class="col-lg-1 myquestion">
                         <div class="status">
                             <strong>{{ question.answers.count }}</strong>
                             <p><small>Answers</small></p>
@@ -122,7 +122,7 @@
             {% if not question.validated(question.answers) %}
             <div class="container">
                 <div class="row justify-content-center" >
-                    <div class="col-lg-1" style=" margin-right: 20px; margin-left: 30px; padding-right: 70px;">
+                    <div class="col-lg-1 myquestion">
                         <div class="status">
                             <strong>{{ question.answers.count }}</strong>
                             <p><small>Answers</small></p>
@@ -140,11 +140,11 @@
                         <p class="tag  ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
                         {% endfor %}
                         <div class="col-lg-3 m-4">
-                        <p class="text-muted m-4" style="width: 150px">
-                            <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                            <span class="text-info"> {{ question.user.username }}</span>
-                            </small>
-                        </p>
+                            <p class="text-muted m-4" style="width: 150px">
+                                <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                                <span class="text-info"> {{ question.user.username }}</span>
+                                </small>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
         {% for question in questions %}
             <div class="container">
                 <div class="row justify-content-center" >
-                    <div class="col-lg-1" style=" margin-right: 20px; margin-left: 30px; padding-right: 70px;">
+                    <div class="col-lg-1 myquestion">
                         <div class="status">
                             <strong>{{ question.answers.count }}</strong>
                             <p><small>Answers</small></p>
@@ -174,11 +174,11 @@
                         <p class="tag  ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
                         {% endfor %}
                         <div class="col-lg-3 m-4">
-                        <p class="text-muted m-4" style="width: 150px">
-                            <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                            <span class="text-info"> {{ question.user.username }}</span>
-                            </small>
-                        </p>
+                            <p class="text-muted m-4" style="width: 150px">
+                                <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
+                                <span class="text-info"> {{ question.user.username }}</span>
+                                </small>
+                            </p>
                         </div>
                     </div>
                 </div>
