@@ -102,53 +102,55 @@
 
     <div style="height: 20px"></div>
 
-    <a id="ask" href="{{ path('question_new') }}"><button class="btn ask" type="button" style="font-size: 30px; width: 110%; height: 60px;" >Ask your question</button></a>
+    <a id="ask" href="{{ path('question_new') }}">
+        <button class="btn ask" type="button" style="font-size: 30px; width: 110%; height: 60px;" >Ask your question</button>
+    </a>
         {% for tags in tag %}
             <div class="container-home">
-         <div class="row" style=" margin: 8px; width: 375px; ">
-            <div class="col">
-                <img src="{{ tags.symbolUrl }}" alt="img" height="40px" style="border-radius: 2px">
-            </div>
-            <div class="col-2 align-text-left">
-                <div class=" text-left"><h2>{{ tags.name }}</h2></div>
-            </div>
-             <div class="col-5 pt-3">
-             </div>
-            <div class="col-4">
-                <div class="col-sm text-right" >
-                    <a href="{{ path('tag_question',{slug: tags.slug} )}} " class="btn dark"> See more</a>
+                <div class="row" style=" margin: 8px; width: 375px; ">
+                    <div class="col">
+                        <img src="{{ tags.symbolUrl }}" alt="img" height="40px" style="border-radius: 2px">
+                    </div>
+                    <div class="col-2 align-text-left">
+                        <div class=" text-left"><h2>{{ tags.name }}</h2></div>
+                    </div>
+                     <div class="col-5 pt-3">
+                     </div>
+                    <div class="col-4">
+                        <div class="col-sm text-right" >
+                            <a href="{{ path('tag_question',{slug: tags.slug} )}} " class="btn dark"> See more</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-         </div>
-         <div class="row ">
-             <div style="background-color: {{ tags.colorCode }};width:10px;   margin-bottom: 30px;"></div>
-                {% for question in tags.questions|slice(1,3) %}
-                    <div class="col-sm question-home ">
-                        <div class="home-content-question">
-                            <div class="home-title-question">
-                                <img src="{{ tags.symbolUrl }}" alt="img" class="imgTag">
-                                <div class="questionTitleHome">{{ question.title|striptags|u.truncate(50,'...')|raw }}</div>
-                            </div>
-                            <div class="questionContentHome">
-                                <p>{{ question.content|striptags|u.truncate(60,'...')|raw }}</p>
-                            </div>
-                            <div class="row " style="margin: 0;">
-                                <div class="status-home" style="background-color: {{ tags.colorCode }};">
-                                    <small>{{ question.answers.count }} Answer(s)</small>
+                <div class="row ">
+                    <div style="background-color: {{ tags.colorCode }};width:10px;   margin-bottom: 30px;"></div>
+                    {% for question in tags.questions|slice(1,3) %}
+                        <div class="col-sm question-home ">
+                            <div class="home-content-question">
+                                <div class="home-title-question">
+                                    <img src="{{ tags.symbolUrl }}" alt="img" class="imgTag">
+                                    <div class="questionTitleHome">{{ question.title|striptags|u.truncate(50,'...')|raw }}</div>
                                 </div>
-                                <div class="more">
-                                    <a class="btn mb-2 me-2" href="{{ path('question_show', {slug: question.slug}) }}">See more</a>
+                                <div class="questionContentHome">
+                                    <p>{{ question.content|striptags|u.truncate(60,'...')|raw }}</p>
+                                </div>
+                                <div class="row " style="margin: 0;">
+                                    <div class="status-home" style="background-color: {{ tags.colorCode }};">
+                                        <small>{{ question.answers.count }} Answer(s)</small>
+                                    </div>
+                                    <div class="more">
+                                        <a class="btn mb-2 me-2" href="{{ path('question_show', {slug: question.slug}) }}">See more</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-                <div style="height: 20px;"></div>
-         </div>
-    </div>
+                    {% endfor %}
+                    <div style="height: 20px;"></div>
+                </div>
+            </div>
         {% endfor %}
             <div style="height: 50px;"> </div>
-    <div><h3>Learn more <span style="font-size: 20px">(with official documentation)</span></h3></div>
+            <div><h3>Learn more <span style="font-size: 20px">(with official documentation)</span></h3></div>
             <div style="height: 20px;"></div>
             <div class="container-home">
                 <div class="row-doc">
@@ -183,92 +185,96 @@
                     <div class="row-doc ">
                         <a href="https://www.w3schools.com/js/default.asp" title="javascript">
                             <div class="col-sm doc tag" >
-                                    <div class="w3-card-2 w3-round ws-pink " >
-                                        <h5 class="tech">JavaScript</h5>
-                                    </div>
+                                <div class="w3-card-2 w3-round ws-pink " >
+                                    <h5 class="tech">JavaScript</h5>
+                                </div>
                             </div>
                         </a>
                     </div>
                 </div>
-            <div style="height: 20px;"></div>
-            <div class="row-doc">
-                <a href="https://getbootstrap.com/" title="bootstrap">
-                    <div class="col-sm doc tag">
-                        <div class="w3-card-2 w3-round ws-pink " >
-                            <h5 class="tech">Bootstrap</h5>
-                        </div>
-                    </div>
-                </a>
-                <div style="width: 10px"></div>
-                <div class="row-doc ">
-                    <a href="https://www.python.org/" title="Python">
-                        <div class="col-sm doc tag" >
+                <div style="height: 20px;"></div>
+                <div class="row-doc">
+                    <a href="https://getbootstrap.com/" title="bootstrap">
+                        <div class="col-sm doc tag">
                             <div class="w3-card-2 w3-round ws-pink " >
-                                <h5 class="tech">Python</h5>
+                                <h5 class="tech">Bootstrap</h5>
                             </div>
                         </div>
                     </a>
-                </div>
-                <div style="width: 10px"></div>
-                <div class="row-doc ">
-                    <a href="https://fr.reactjs.org/tutorial/tutorial.html" title="React">
-                        <div class="col-sm doc tag" >
-                                <div class="w3-card-2 w3-round ws-pink " >
-                                    <h5 class="tech">React</h5>
-                                </div>
-                        </div>
-                    </a>
-                </div>
-                <div style="width: 10px"></div>
-                <div class="row-doc ">
-                    <a href="https://www.w3schools.com/cpp/default.asp" title="C++">
-                        <div class="col-sm doc tag" >
-                            <div class="w3-card-2 w3-round ws-pink " >
-                                <h5 sclass="tech">C++</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div style="height: 20px;"></div>
-            <div class="row-doc ">
-                <a href="https://angular.io/docs" title="Angular">
-                    <div class="col-sm doc tag" style=" ">
-                        <div class="w3-card-2 w3-round ws-pink ">
-                            <h5 class="tech">Angular</h5>
-                        </div>
-                    </div>
-                </a>
                     <div style="width: 10px"></div>
                     <div class="row-doc ">
-                    <a href="https://www.w3schools.com/sql/default.asp" title="SQL">
-                        <div class="col-sm doc tag" >
-                            <div class="w3-card-2 w3-round ws-pink " >
-                                <h5 class="tech">SQL</h5>
+                        <a href="https://www.python.org/" title="Python">
+                            <div class="col-sm doc tag" >
+                                <div class="w3-card-2 w3-round ws-pink " >
+                                    <h5 class="tech">Python</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div style="width: 10px"></div>
+                    <div class="row-doc ">
+                        <a href="https://fr.reactjs.org/tutorial/tutorial.html" title="React">
+                            <div class="col-sm doc tag" >
+                                    <div class="w3-card-2 w3-round ws-pink " >
+                                        <h5 class="tech">React</h5>
+                                    </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div style="width: 10px"></div>
+                    <div class="row-doc ">
+                        <a href="https://www.w3schools.com/cpp/default.asp" title="C++">
+                            <div class="col-sm doc tag" >
+                                <div class="w3-card-2 w3-round ws-pink " >
+                                    <h5 sclass="tech">C++</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div style="height: 20px;"></div>
+                <div class="row-doc ">
+                    <a href="https://angular.io/docs" title="Angular">
+                        <div class="col-sm doc tag" style=" ">
+                            <div class="w3-card-2 w3-round ws-pink ">
+                                <h5 class="tech">Angular</h5>
                             </div>
                         </div>
                     </a>
                     <div style="width: 10px"></div>
+                    <div class="row-doc ">
+                        <a href="https://www.w3schools.com/sql/default.asp" title="SQL">
+                            <div class="col-sm doc tag" >
+                                <div class="w3-card-2 w3-round ws-pink " >
+                                    <h5 class="tech">SQL</h5>
+                                </div>
+                            </div>
+                        </a>
+                        <div style="width: 10px"></div>
+                            <div class="row-doc ">
+                                <a href="https://www.tutorialsteacher.com/core" title=".NET">
+                                    <div class="col-sm doc tag" >
+                                        <div class="w3-card-2 w3-round ws-pink " >
+                                            <h5 class="tech">.NET</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <div style="width: 10px"></div>
                         <div class="row-doc ">
-                            <a href="https://www.tutorialsteacher.com/core" title=".NET">
+                            <a href="https://www.w3schools.com/cs/index.php" title="C#">
                                 <div class="col-sm doc tag" >
                                     <div class="w3-card-2 w3-round ws-pink " >
-                                        <h5 class="tech">.NET</h5>
+                                        <h5 class="tech">C#</h5>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    <div style="width: 10px"></div>
-                    <div class="row-doc ">
-                        <a href="https://www.w3schools.com/cs/index.php" title="C#">
-                            <div class="col-sm doc tag" >
-                                <div class="w3-card-2 w3-round ws-pink " >
-                                    <h5 class="tech">C#</h5>
-                                </div>
-                            </div>
-                        </a>
                     </div>
+                </div>
             </div>
-    </div>
-</div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/script.js') }}"></script>
 {% endblock %}

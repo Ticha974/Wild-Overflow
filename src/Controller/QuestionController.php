@@ -6,7 +6,6 @@ use App\Entity\Answer;
 use App\Entity\Question;
 use App\Form\AnswerType;
 use App\Form\QuestionType;
-use App\Form\SearchQuestionFormType;
 use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -66,14 +65,10 @@ class QuestionController extends AbstractController
      * @param Slugify $slugger
      * @return Response
      */
-    public function new(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        Slugify $slugger
-    ): Response {
+    public function new(Request $request, EntityManagerInterface $entityManager, Slugify $slugger): Response
+    {
         $question = new Question();
         if ($this->getUser()) {
-            $question = new Question();
             $form = $this->createForm(QuestionType::class, $question);
             $form->handleRequest($request);
 
@@ -122,12 +117,8 @@ class QuestionController extends AbstractController
      * @Route("/{slug}/edit", name= "edit", methods={"GET", "POST"})
      */
 
-    public function edit(
-        Request $request,
-        Question $question,
-        EntityManagerInterface $entityManager
-    ): Response {
-
+    public function edit(Request $request, Question $question, EntityManagerInterface $entityManager): Response
+    {
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 

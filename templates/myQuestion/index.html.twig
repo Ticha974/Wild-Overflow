@@ -26,7 +26,9 @@
             <h3 class="header text-center">Your Questions</h3>
         </div>
         <div class="col-3.5 pt-4">
-            <a id="ask" href="{{ path('question_new') }}"><button class="btn ask" type="button" >Ask question</button></a>
+            <a id="ask" href="{{ path('question_new') }}">
+                <button class="btn ask" type="button" >Ask question</button>
+            </a>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -47,30 +49,32 @@
                             <p><small>Answers</small></p>
                     </div>
                 </div>
-            <div class="col-question col-lg-8" >
-                <div>
-                    <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
-                        {{ question.title }}</a>
-                    <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
+                <div class="col-question col-lg-8" >
+                    <div>
+                        <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
+                            {{ question.title }}</a>
+                        <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
+                    </div>
                 </div>
-            </div>
-            {% for tag in question.tags %}
+                {% for tag in question.tags %}
                 <div class="col-sm align-self-center">
                     <p class="tag ms-5 mb-1"><span><small><a href="{{ path('tag_question', {slug: tag.slug}) }}">{{ tag.name }}</a></small></span></p>
-            {% endfor %}
+                {% endfor %}
                     <div class="col-lg-3 m-4">
                         <p class="text-muted m-4" style="width: 150px">
-                            <small>Asked on: {{ question.createdAt|date("m/d/Y") }}
-                            <span class="text-info"> {{ question.user.username }}</span>
-                            </small>
+                            <small>Asked on: {{ question.createdAt|date("m/d/Y") }}</small>
                         </p>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
+    {% else %}
+        <p>No questions yet.</p>
+    {% endfor %}
 </div>
-        {% else %}
-            <p>No questions yet.</p>
-        {% endfor %}
-</div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/script.js') }}"></script>
 {% endblock %}

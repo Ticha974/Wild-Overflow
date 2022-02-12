@@ -1,5 +1,11 @@
 # Project 3 - Starter Kit - Symfony 5.*
 
+## A propos
+
+Ce projet conclut une session de formation professionnelle de Développeur Web PHP/Symfony, de trois mois.
+
+Voici une petite [diapo](https://docs.google.com/presentation/d/10lIitLA8na_vYaUU_ymdtjxIDp_gdW-lV2BYd4jGqzU/edit?usp=sharing) présentant dans les grandes lignes notre projet Wild Overflow.
+
 ## Presentation
 
 This starter kit is here to easily start a repository for Wild Code School students.

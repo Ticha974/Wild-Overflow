@@ -10,21 +10,22 @@
     <ul class="breadcrumb">
         <a href="/">
             <li class="breadcrumb__item breadcrumb__item-firstChild">
-    <span class="breadcrumb__inner">
-        <span class="breadcrumb__title">Home</span>
-    </span>
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__title">Home</span>
+                </span>
             </li>
-        </a><a href="/question">
+        </a>
+        <a href="/question">
             <li class="breadcrumb__item breadcrumb__item-firstChild">
-    <span class="breadcrumb__inner">
-        <span class="breadcrumb__title">All questions</span>
-    </span>
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__title">All questions</span>
+                </span>
             </li>
         </a>
         <li class="breadcrumb__item"style="background-color: #f5c2c7">
-    <span class="breadcrumb__inner">
-    <span class="breadcrumb__title" >{{ question.title|striptags|u.truncate(25, '...') }}</span>
-    </span>
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title" >{{ question.title|striptags|u.truncate(25, '...') }}</span>
+            </span>
         </li>
     </ul>
 </div>
@@ -66,22 +67,20 @@
                             </div>
                             {% endif %}
                         </div>
-                <div class="col-sm-8 col-lg-8 col-md-8 pt-3">
-                    <p><span class="text-info answer">{{ answer.user.username }}</span>
-                        <span class="text-muted-show ms-4"><small>Answered : {{ answer.createdAt|date("m/d/Y") }}</small></span></p>
-                    <p>{{ answer.content|raw }}</p>
-                </div></div>
-            <div class="row border-bottom pb-3">
+                        <div class="col-sm-8 col-lg-8 col-md-8 pt-3">
+                            <p><span class="text-info answer">{{ answer.user.username }}</span>
+                                <span class="text-muted-show ms-4"><small>Answered : {{ answer.createdAt|date("m/d/Y") }}</small></span></p>
+                            <p>{{ answer.content|raw }}</p>
+                        </div>
+                    </div>
+                <div class="row border-bottom pb-3">
                     {% if app.user == question.user %}
                         {% if not (answer.isValid) %}
-
-                            <!--<button type="submit" class="btn btn-outline-success" style="width: 215px">Validate this answer</button>-->
-                            <a href="{{ path('myquestion_validateAnswer', {'id': answer.id }) }}" onclick="return confirm('Please confirm to validate this answer');" class="btn valid" style="width: 215px">Validate this answer</a>
-
+                        <a href="{{ path('myquestion_validateAnswer', {'id': answer.id }) }}" onclick="return confirm('Please confirm to validate this answer');" class="btn valid" style="width: 215px">Validate this answer</a>
                         {% endif %}
-                    {% endif %}</div>
-
-                        {% else %}
+                    {% endif %}
+                </div>
+                    {% else %}
                 {% if (question.answers.count) == 0 %}
                 <div class="col-8" style="text-align: center;">
                     <h4 class="title small-title" style="margin-top: 0;">Be the first to answer this question!</h4>
@@ -89,41 +88,40 @@
                         <strong><a id="linkLogin" class="text-link" href="/login" title="Run to login page" style="color: #f67b7f;">I log in to my account</a></strong>
                     {% endif %}
                 {% endif %}
-
                 </div>
             {% endfor %}
+            </div>
         </div>
     </div>
-        </div>
-    </div>
+</div>
 {% if app.user %}
     <div class="container">
         <div class="row justify-content-center">
-             <div class="col-8">
+            <div class="col-8">
                 <h4>Your answer</h4>
             </div>
         </div>
         <div class="row-form justify-content-center">
             <div class="col-8">
-        {{ form_start(form) }}
-        <div class="my-custom-class-for-errors">
-            {{ form_errors(form) }}
-        </div>
-        <div class="row answer-row">
-            <div class="col" id="some-custom-id">
-                {{ form_row(form.content) }}
-            </div>
-        </div>
-        <button  type="submit" class="btn btnAnswer">Send answer</button>
-        {{ form_end(form) }}
+                {{ form_start(form) }}
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(form) }}
+                </div>
+                <div class="row answer-row">
+                    <div class="col" id="some-custom-id">
+                        {{ form_row(form.content) }}
+                    </div>
+                </div>
+            <button  type="submit" class="btn btnAnswer">Send answer</button>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
 {% else %}
     {% if (question.answers.count) > 0 %}
-            <h4 class="title small-title" style="margin-top: 0;">To answer this question :</h4>
-            <strong><a id="linkLogin" class="text-link" href="/login" title="Run to login page" style="color: #ff6c71;">I log in to my account</a></strong>
+        <h4 class="title small-title" style="margin-top: 0;">To answer this question :</h4>
+        <strong><a id="linkLogin" class="text-link" href="/login" title="Run to login page" style="color: #ff6c71;">I log in to my account</a></strong>
     {% endif %}
 {% endif %}
-    </div>
+</div>
 {% endblock %}

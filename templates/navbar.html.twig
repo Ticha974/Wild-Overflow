@@ -3,33 +3,33 @@
     <ul class="nav">
         <li class="list {% if app.request.get('_route') == 'home' %}active{% endif %}">
             <a href="/">
-            <span class="icon">
-              <ion-icon name="home-outline"></ion-icon>
-            </span>
+                <span class="icon">
+                  <ion-icon name="home-outline"></ion-icon>
+                </span>
                 <span class="text">Home</span>
             </a>
         </li>
         <li class="list {% if (app.request.get('_route') == 'question_index') or (app.request.get('_route') == 'tag_question') or (app.request.get('_route') == 'question_show') or (app.request.get('_route') == 'question_search')%}active{% endif %}">
             <a href="/question">
-            <span class="icon">
-              <ion-icon name="help-outline"></ion-icon>
-            </span>
+                <span class="icon">
+                  <ion-icon name="help-outline"></ion-icon>
+                </span>
                 <span class="text">Questions</span>
             </a>
         </li>
         <li class="list {% if app.request.get('_route') == 'about' %}active{% endif %}">
             <a href="/about">
-            <span class="icon">
-              <ion-icon name="information-outline"></ion-icon>
-            </span>
+                <span class="icon">
+                  <ion-icon name="information-outline"></ion-icon>
+                </span>
                 <span class="text">About</span>
             </a>
         </li>
         <li class="list {% if app.request.get('_route') == 'contact' %}active{% endif %}">
             <a href="/contact">
-            <span class="icon">
-              <ion-icon name="mail-outline"></ion-icon>
-            </span>
+                <span class="icon">
+                  <ion-icon name="mail-outline"></ion-icon>
+                </span>
                 <span class="text">Contact us</span>
             </a>
         </li>
@@ -45,7 +45,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ path('myquestion_index') }}">My Questions</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('app_logout', {'token':csrf_token('logout')}) }}">Logout</a>
+                    <a class="dropdown-item" href="{{ path('app_logout', {'token': csrf_token('logout')}) }}">Logout</a>
                 </div>
             {% else %}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -58,14 +58,13 @@
         <!--<li>{% if app.user %}<span style="color: #fff;">Hello {{ app.user.username }}</span>{% endif %}</li>-->
         <li>
             <div class="row" style="padding-top:13px">
-            <form action="{{ path('question_search') }}" method="get">
-                <input type="search" name="search-term" id="search-term" value="" required>
-                <button type="submit"><ion-icon name="search"></ion-icon></button>
-            </form>
+                <form action="{{ path('question_search') }}" method="get">
+                    <input type="search" name="search-term" id="search-term" value="" required>
+                    <button type="submit"><ion-icon name="search"></ion-icon></button>
+                </form>
             </div>
         </li>
         <div class="indicator"></div>
-
     </ul>
 </div>
 {% block javascripts %}

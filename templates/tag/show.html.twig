@@ -8,22 +8,22 @@
     <ul class="breadcrumb">
         <a href="/">
             <li class="breadcrumb__item breadcrumb__item-firstChild">
-        <span class="breadcrumb__inner">
-            <span class="breadcrumb__title">Home</span>
-        </span>
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__title">Home</span>
+                </span>
             </li>
         </a>
         <a href="/question">
             <li class="breadcrumb__item breadcrumb__item-firstChild">
-        <span class="breadcrumb__inner">
-            <span class="breadcrumb__title">All questions</span>
-        </span>
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__title">All questions</span>
+                </span>
             </li>
         </a>
         <li class="breadcrumb__item"style="background-color: #f5c2c7">
-        <span class="breadcrumb__inner">
-        <span class="breadcrumb__title" >{{ tag.name }}</span>
-        </span>
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title" >{{ tag.name }}</span>
+            </span>
         </li>
     </ul>
 <div class="container mt-3">
@@ -125,7 +125,8 @@
                     <div class="col-question col-lg-8" >
                         <div>
                             <a href="{{ path('question_show', {slug: question.slug}) }}" class="title-question">
-                                    {{ question.title }}</a>
+                                    {{ question.title }}
+                            </a>
                             <div class="col-8">
                                 <p>{{ question.content|striptags|u.truncate(200, '...')|raw }}</p>
                             </div>
@@ -176,4 +177,8 @@
     {% endif %}
 </div>
 </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/script.js') }}"></script>
 {% endblock %}
